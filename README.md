@@ -1,11 +1,12 @@
-# javascript_project-
+# javascript_project- Timeline
 
-##How Our Version of Timeline Works.
+## How Our Version of Timeline works.
 
 Timeline is a game in which players learn about history. Each card has a year hidden from the player, and they must use their knowledge to place cards in the correct order. 
 
-The 1 player variation of the game works as following: 
+We've created a one player variation of the game for us to initially build the app. Future iterations of the project will incorporate 2 or more human players, and competitive computer AI players, to play against.
 
+The 1 player variation of the game works as following: 
 1. The compueter shuffles the deck from our database. 
 2. One card, the starter card, is placed face-up in the middle of the board. 
 3. A small hand of four cards is dealt, facedown at random to the player. 
