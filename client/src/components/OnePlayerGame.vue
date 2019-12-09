@@ -2,13 +2,26 @@
   <section id="one-player-game-wrapper">
     <deck-component id='draw-pile' :deckArray='drawPileArray'  />
 
-    <draggable class="board-array" :list="boardArray">
+    <div class="row">
+      <div class="col-3">
+        <draggable class="board-array" :list="boardArray" group="cards" @change="log">
 
-      <div class="board-array-item" v-for="(element, index) in boardArray" :key="index">
-        {{ element.shortTitle }}
+          <div class="board-array-item" v-for="(element, index) in boardArray" :key="index">
+            {{ element.shortTitle }}
+          </div>
+
+        </draggable>
       </div>
+      <div class="col-3">
+        <draggable class="hand-array" :list="handArray" group="cards" @change="log">
 
-    </draggable>
+          <div class="hand-array-item" v-for="(element, index) in handArray" :key="index">
+            {{ element.shortTitle }}
+          </div>
+
+        </draggable>
+      </div>
+    </div>
 
     Board Draggable: boardArray
     Hand Draggable: handArray
@@ -22,6 +35,8 @@ import draggable from 'vuedraggable'
 
 export default {
   name: 'one-player-game',
+  display: "Two lists",
+  Order: 1,
   data(){
     return {
       drawPileArray: [],
@@ -89,7 +104,18 @@ export default {
 
     },
 
-    log: function(evt) {
+    add: function() {
+      this.list.push({ shortTitle: ""});
+    },
+    replace: function () {
+      this.list = [{ shortTitle: ""}];
+    },
+    clone: function (el) {
+      return {
+        shortTitle: el.shortTitle + " cloned"
+      };
+    },
+    log: function (evt) {
       window.console.log(evt);
     }
 
