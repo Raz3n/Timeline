@@ -15,14 +15,14 @@ db.cards.insertMany([
     title: "First use of toilet paper",
     shortTitle: "First use of toilet paper",
     year: "589",
-    description: "",
+    description: "Although paper had been known as a wrapping and padding material in China since the 2nd century BC,[3] the first documented use of toilet paper in human history dates back to the 6th century AD, in early medieval China.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Toiletpapier_%28Gobran111%29.jpg/440px-Toiletpapier_%28Gobran111%29.jpg"
   },
   {
     title: "Emergence of number zero",
     shortTitle: "Emergence of number zero",
     year: "628",
-    description: "",
+    description: "The first known documented use of zero dates to AD 628, and appeared in the Brāhmasphuṭasiddhānta, the main work of the Indian mathematician Brahmagupta. He treated 0 as a number and discussed operations involving it, including division.",
     image: "https://theosophical.files.wordpress.com/2011/06/zero2.jpg"
   },
   {
