@@ -12,7 +12,7 @@
       </section>
     </nav>
     <section id="play-area-container">
-      Board Area
+      <one-player-game /> 
       Player Hand
     </section>
     <footer> Scores </footer>

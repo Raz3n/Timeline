@@ -26,14 +26,14 @@ export default {
     draggable
   },
   mounted() {
-    this.getDeck();
-    this.dealCard(deckArray, boardArray, 1);
-    this.dealCard(deckArray, handArray, 4);d
+    this.getDeck()
+    .then(this.dealCard(deckArray, boardArray, 1))
+    .then(dealCard(deckArray, handArray, 4));
   },
   methods: {
 
     getDeck(){
-      return fetch('localhost:3000/api/cards')
+      return fetch('http://localhost:3000/api/cards')
       .then(res => res.json ())
       .then(cards => this.deckArray = shuffleCards(cards))
     },
