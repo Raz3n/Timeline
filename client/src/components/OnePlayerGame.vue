@@ -1,6 +1,15 @@
 <template lang="html">
   <section id="one-player-game-wrapper">
-    <deck-component id='draw-pile' :deckArray='drawPileArray'/>
+    <deck-component id='draw-pile' :deckArray='drawPileArray'  />
+
+    <draggable class="board-array" :list="boardArray">
+
+      <div class="board-array-item" v-for="(element, index) in boardArray" :key="index">
+        {{ element.shortTitle }}
+      </div>
+
+    </draggable>
+
     Board Draggable: boardArray
     Hand Draggable: handArray
     <deck-component id='discard-pile' :deckArray='discardArray'/>
@@ -78,6 +87,10 @@ export default {
 
       // console.log('All cards dealt')
 
+    },
+
+    log: function(evt) {
+      window.console.log(evt);
     }
 
   }
