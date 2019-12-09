@@ -28,7 +28,7 @@ export default {
   mounted() {
     this.getDeck();
     this.dealCard(deckArray, boardArray, 1);
-    this.dealCard(deckArray, handArray, 4);
+    this.dealCard(deckArray, handArray, 4);d
   },
   methods: {
 
