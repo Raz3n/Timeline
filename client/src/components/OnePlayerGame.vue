@@ -9,6 +9,8 @@
 
 <script>
 import DeckComponent from './DeckComponent.vue'
+import draggable from 'vuedraggable'
+
 
 export default {
   name: 'one-player-game',
@@ -21,7 +23,8 @@ export default {
     }
   },
   components: {
-    'deck-component': DeckComponent
+    'deck-component': DeckComponent,
+    draggable
   }
 }
 </script>
