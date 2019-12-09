@@ -29,14 +29,14 @@ db.cards.insertMany([
     title: "Discovery of universal gravitation",
     shortTitle: "Discovery of universal gravitation",
     year: "1666",
-    description: "",
+    description: "Legend has it that a young Isaac Newton was sitting under an apple tree when he was bonked on the head by a falling piece of fruit, a 17th-century “aha moment” that prompted him to suddenly come up with his law of gravity",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Honeycrisp.jpg/440px-Honeycrisp.jpg"
   },
   {
     title: "Invention of the can",
     shortTitle: "Invention of the can",
     year: "1810",
-    description: "",
+    description: "The tin can process was allegedly developed by Frenchman Philippe de Girard, who came to London and used British merchant Peter Durand as an agent to patent his own idea in 1810.",
     image: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Drinking_can_ring-pull_tab.jpg"
   },
   {
