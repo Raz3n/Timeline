@@ -16,11 +16,16 @@
       Player Hand
     </section>
     <footer> Scores </footer>
-  </div>
+</div>
 </template>
 
 <script>
+import OnePlayerGame from './components/OnePlayerGame.vue'
 export default {
+  name: 'app',
+  components: {
+    'one-player-game': OnePlayerGame
+  }
 }
 </script>
 
