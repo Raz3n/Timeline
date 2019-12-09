@@ -26,48 +26,57 @@ export default {
     draggable
   },
   mounted() {
-    this.getDeck();
-    // this.drawPileArray = this;
-    this.dealCard(this.drawPileArray, this.boardArray, 1);
-    this.dealCard(this.drawPileArray, this.handArray, 4);
+    this.gameSetup();
+
   },
   methods: {
 
-    getDeck(){
+    gameSetup(){
+      // get all the data
       return fetch('http://localhost:3000/api/cards')
+      // understand the data
       .then(res => res.json())
+      // use data as cards and shuffle them
       .then(cards => this.drawPileArray = this.shuffleCards(cards))
+      // deal the shuffled cards
+      .then(shuffledCards => {
+        this.dealCard(this.drawPileArray, this.boardArray, 1);
+        this.dealCard(this.drawPileArray, this.handArray, 4);
+      })
+
     },
 
     shuffleCards(deck){
-      console.log('deck:', deck);
+      // get the length of the array i.e. the number of cards in the deck e.g. 20.
       const length = deck.length;
+      // get the index number range i.e. the length minus 1
       const randIndexLength = length - 1;
+      // choose a number of times to perform the shuffle
       const shuffleValue = 100;
-      // let shuffleTotal = 0;
-
 
       for (let shuffleStep = 0; shuffleStep < shuffleValue; shuffleStep++) {
-        // run this statment 100 times
-        const indexOne = Math.round(Math.random() * randIndexLength);
-        const indexTwo = Math.round(Math.random() * randIndexLength);
+        // run this statment x number of times
+        // choose a random card by index number.
+        const indexOne = Math.round( Math.random() * randIndexLength );
+        // choose a second random card by index number
+        const indexTwo = Math.round( Math.random() * randIndexLength );
+
+        // swap the positions of random card 1 and random card 2.
         [deck[indexOne], deck[indexTwo]] = [deck[indexTwo], deck[indexOne]];
       }
-
       return deck;
-      // if (shuffleTotal === 100) {
-      //     return deck;
-      //   }
-
     },
 
-    dealCard(dealArray, placeArray, number){
+    dealCard(dealPileArray, placePileArray, number){
       for (let dealStep = 0; dealStep < number; dealStep++) {
-        const card = dealArray[0];
-        dealArray.shift();
-        placeArray.unshift(card);
+        const card = dealPileArray[0];
+        dealPileArray.shift();
+        // console.log('card:', card);
+        placePileArray.unshift(card);
       }
-      console.log('All cards dealt')
+      return dealPileArray
+
+      // console.log('All cards dealt')
 
     }
 
