@@ -11,10 +11,7 @@
         Change Rules
       </section>
     </nav>
-    <section id="play-area-container">
       <one-player-game />
-      Player Hand
-    </section>
     <footer> Scores </footer>
 </div>
 </template>
@@ -33,7 +30,7 @@ export default {
 #app{
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: 2fr 12fr 1fr;
 }
 
 nav{
@@ -66,13 +63,14 @@ nav{
   grid-column: 4/5;
 }
 
-section#play-area-container{
-  grid-row: 2 / 5;
-  grid-column: 1 / 4
+#instructions, #play, #change-rules{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 footer {
-  grid-row: 5 /6;
+  grid-row: 3 /4;
   grid-column: 1/4;
   background: red;
 }
