@@ -2,12 +2,14 @@
   <article class="playing-card">
     <p> Short Title:</p>
     <img src="blank" alt="Title"/>
-    <p class="hidden">Year: </p>  
+    <p class="hidden">Year: </p>
   </article>
 </template>
 
 <script>
 export default {
+  name: 'playing-card',
+  props: ['card']
 }
 </script>
 
