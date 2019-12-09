@@ -11,7 +11,6 @@
 import DeckComponent from './DeckComponent.vue'
 import draggable from 'vuedraggable'
 
-
 export default {
   name: 'one-player-game',
   data(){
@@ -26,16 +25,20 @@ export default {
     'deck-component': DeckComponent,
     draggable
   },
-  mounted: {
-    this.getDeck(){
-      fetch('localhost:3000/api/cards')
-      .then(res => res.json ())
-      .then(cards => this.deckArray = cards)
-    }
+  mounted() {
+    this.getDeck();
+    this.dealCard(deckArray, boardArray, 1);
+    this.dealCard(deckArray, handArray, 4);
   },
   methods: {
-    shuffleCards(){
-      const deck = this.deckArray;
+
+    getDeck(){
+      return fetch('localhost:3000/api/cards')
+      .then(res => res.json ())
+      .then(cards => this.deckArray = shuffleCards(cards))
+    },
+
+    shuffleCards(deck){
       const length = deck.length();
       const randIndexLength = length - 1;
       const shuffleValue = 100;
@@ -47,9 +50,23 @@ export default {
         shuffleTotal += 1
         }
         else if (shuffleTotal === 100) {
-          return this.deckArray = deck; 
+          return deck;
         }
+    },
+
+    dealCard(dealArray, placeArray, number){
+      if (number !== 0){ const card = dealArray[0];
+      dealArray.shift();
+      placeArray.unshift(card);
+      number -= 1;
+      console.log('One card dealt')
+        }
+      else {
+        console.log('All cards dealt')
+      }
+
     }
+
   }
 
 }
