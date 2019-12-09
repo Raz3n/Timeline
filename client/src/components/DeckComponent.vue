@@ -1,5 +1,5 @@
 <template lang="html">
-    <aside class="card-deck">
+    <aside class="card-deck hidden">
       This is where the deck is
     </aside>
 
@@ -19,4 +19,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.hidden{
+  visibility:hidden;
+}
 </style>
