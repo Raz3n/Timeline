@@ -1,6 +1,6 @@
 <template lang="html">
   <section id="one-player-game-wrapper">
-    Deck Component: deckArray
+    <deck-component :deckArray='deckArray'/>
     Board Component: boardArray
     Hand Component: handArray
     Discard Component: discardArray
