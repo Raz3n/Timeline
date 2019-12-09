@@ -1,5 +1,5 @@
 <template lang="html">
-    <aside id="deck">
+    <aside class="card-deck">
       This is where the deck is
     </aside>
 

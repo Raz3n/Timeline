@@ -1,9 +1,9 @@
 <template lang="html">
   <section id="one-player-game-wrapper">
-    <deck-component :deckArray='deckArray'/>
+    <deck-component id='draw-pile':deckArray='deckArray'/>
     Board Draggable: boardArray
     Hand Draggable: handArray
-    <deck-component :discardArray='discardArray'/>
+    <deck-component id='discard-pile':discardArray='discardArray'/>
   </section>
 </template>
 
