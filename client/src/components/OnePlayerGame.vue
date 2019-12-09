@@ -1,8 +1,14 @@
 <template lang="html">
-
+  <section id="one-player-game-wrapper">
+    Deck Component: deckArray
+    Board Component: boardArray
+    Hand Component: handArray
+    Discard Component: discardArray
+  </section>
 </template>
 
 <script>
+import DeckComponent from './DeckComponent.vue'
 
 export default {
   name: 'one-player-game',
@@ -13,6 +19,9 @@ export default {
       handArray:[],
       discardArray: []
     }
+  },
+  components: {
+    'deck-component': DeckComponent
   }
 }
 </script>
