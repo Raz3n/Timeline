@@ -3,7 +3,7 @@
     <deck-component id='draw-pile':deckArray='deckArray'/>
     Board Draggable: boardArray
     Hand Draggable: handArray
-    <deck-component id='discard-pile':discardArray='discardArray'/>
+    <deck-component id='discard-pile':deckArray='discardArray'/>
   </section>
 </template>
 
@@ -26,32 +26,38 @@ export default {
     draggable
   },
   mounted() {
-    this.getDeck()
-    .then(this.dealCard(deckArray, boardArray, 1))
-    .then(dealCard(deckArray, handArray, 4));
+    this.getDeck();
+    this.dealCard(this.deckArray, this.boardArray, 1);
+    this.dealCard(this.deckArray, this.handArray, 4);
   },
   methods: {
 
     getDeck(){
       return fetch('http://localhost:3000/api/cards')
-      .then(res => res.json ())
-      .then(cards => this.deckArray = shuffleCards(cards))
+      .then(res => res.json())
+      .then(cards => this.deckArray = cards)
     },
 
     shuffleCards(deck){
-      const length = deck.length();
+      console.log('deck:', deck);
+      const length = deck.length;
       const randIndexLength = length - 1;
       const shuffleValue = 100;
-      let shuffleTotal = 0;
-      if (shuffleTotal < 100) {
+      // let shuffleTotal = 0;
+
+
+      for (let shuffleStep = 0; shuffleStep < shuffleValue; shuffleStep++) {
+        // run this statment 100 times
         const indexOne = Math.random() * randIndexLength;
         const indexTwo = Math.random() * randIndexLength;
         [deck[indexOne], deck[indexTwo]] = [deck[indexTwo], deck[indexOne]];
-        shuffleTotal += 1
-        }
-        else if (shuffleTotal === 100) {
-          return deck;
-        }
+      }
+
+      return deck;
+      // if (shuffleTotal === 100) {
+      //     return deck;
+      //   }
+
     },
 
     dealCard(dealArray, placeArray, number){
