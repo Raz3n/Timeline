@@ -1,28 +1,33 @@
-<template>
+<template lang="html">
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <nav>
+      <section id="instructions" class="nav">
+        Instructions
+      </section>
+      <section id="play" class="nav">
+        Play
+      </section>
+      <section id="change-rules" class="nav">
+        Change Rules
+      </section>
+    </nav>
+    <section id="play-area-container">
+      Board Area
+      Player Hand
+    </section>
+    <footer> Scores </footer>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import OnePlayerGame from './components/OnePlayerGame.vue'
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    'one-player-game': OnePlayerGame
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="css" scoped>
 </style>

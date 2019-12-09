@@ -1,8 +1,6 @@
 use timeline;
 db.dropDatabase();
 
-
-
 db.cards.insertMany([
   {
     title: "Invention of chess",
