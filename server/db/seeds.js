@@ -8,7 +8,7 @@ db.cards.insertMany([
     title: "Invention of chess",
     shortTitle: "Invention of chess",
     year: "570",
-    description: "",
+    description: "Chess is a two-player strategy board game played on a checkered board with 64 squares arranged in an 8×8 grid. The game is played by millions of people worldwide. Chess is believed to be derived from the Indian game chaturanga sometime before the 7th century.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/ChessSet.jpg/500px-ChessSet.jpg"
   },
   {
