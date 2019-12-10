@@ -40,6 +40,7 @@ export default {
   components: {
     'deck-component': DeckComponent,
     'playing-card': PlayingCard,
+    'evaluation-button': EvaluationButton,
     draggable
   },
 
