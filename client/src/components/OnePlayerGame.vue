@@ -2,6 +2,7 @@
   <section id="one-player-game-wrapper">
     <deck-component id='draw-pile' :deckArray='drawPileArray'  />
 
+    <evaluation-button :cardsInPlay="boardArray" />
         <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log">
           <playing-card v-for="(card, index) in boardArray" :key="index" :card="card"/>
         </draggable>
@@ -22,6 +23,7 @@
 <script>
 import DeckComponent from './DeckComponent.vue'
 import PlayingCard from './PlayingCard.vue'
+import EvaluationButton from './EvaluationButton.vue'
 import draggable from 'vuedraggable'
 // import BlankCard from './BlankCard.vue'
 
@@ -43,6 +45,7 @@ export default {
     'deck-component': DeckComponent,
     'playing-card': PlayingCard,
     // 'blank-card': BlankCard,
+>>>>>>> develop
     draggable
   },
 
