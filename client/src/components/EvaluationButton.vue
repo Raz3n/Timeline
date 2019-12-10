@@ -19,9 +19,11 @@ export default {
     evaluateCard () {
       // find index of played card
       // compare to year of left card
+      let failCounter = 0;
       this.cardsInPlay.forEach(function(card, index, array){
         const leftCardIndex = index -1;
         const rightCardIndex = index +1;
+
         //left card index is the index of array minus 1
         //right card index is the index of array plus 1
 
@@ -30,26 +32,29 @@ export default {
         const leftCard = array[leftCardIndex];
         const rightCard = array[rightCardIndex];
 
-
         //if there is a left card and its year is more than the card year return false
         if (leftCard && leftCard.year > card.year) {
-          return false
+          failCounter++
         }
         //if there is a right card and its year is more than the card year return false
 
         else if (rightCard && rightCard.year < card.year) {
-            return false
+          failCounter++
           }
 
           else {        //else card is correct and function ends
-            console.log("true")
+
           }
         }
+      );
+      if (failCounter > 0) {
+        console.log('loser')
+      } else (
+        console.log('congrats')
       )
+
     }
   }
-
-
 }
 </script>
 
