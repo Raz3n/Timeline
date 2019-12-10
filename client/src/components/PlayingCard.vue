@@ -26,7 +26,7 @@ export default {
     padding: 1em;
     border-radius: 2em;
     min-height: 16em;
-    max-width: 10em;
+    width: 10em;
     height: 11em;
     display: -webkit-box;
     display: -ms-flexbox;
