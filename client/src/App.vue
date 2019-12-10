@@ -2,7 +2,7 @@
   <div id="app">
     <nav>
       <section id="instructions" class="nav">
-        <button v-on:click="selectInstructions" type="button" name="button">View Instructions</button>
+        <button v-on:click="selectViewInstructions" type="button" name="button">View Instructions</button>
       </section>
       <section id="play" class="nav">
         <img id="logo-image" src="/timeline-logo.png" alt="Timeline Logo">
@@ -12,9 +12,11 @@
         <button v-on:click="selectOnePlayerGame" type="button" name="button">Play One Player</button>
 
       </section>
+
     </nav>
-      <one-player-game  v-if="currentView === 'OnePlayerGame'"/>
-      <view-full-deck  v-if="currentView === 'ViewFullDeck'"/>
+      <one-player-game  v-if="currentView === 'OnePlayerGame'" />
+      <view-full-deck  v-if="currentView === 'ViewFullDeck'" />
+      <view-instructions  v-if="currentView === 'ViewInstructions'" />
     <footer> Scores </footer>
 </div>
 </template>
@@ -22,6 +24,7 @@
 <script>
 import OnePlayerGame from './components/OnePlayerGame.vue';
 import ViewFullDeck from './components/ViewFullDeck.vue';
+import ViewInstructions from './components/ViewInstructions.vue';
 
 export default {
   name: 'app',
@@ -37,13 +40,14 @@ export default {
     selectOnePlayerGame(){
       this.currentView = "OnePlayerGame"
     },
-    selectviewInstructions(){
+    selectViewInstructions(){
       this.currentView = "ViewInstructions"
     }
   },
   components: {
     'one-player-game': OnePlayerGame,
-    'view-full-deck': ViewFullDeck
+    'view-full-deck': ViewFullDeck,
+    'view-instructions': ViewInstructions
   }
 }
 </script>
