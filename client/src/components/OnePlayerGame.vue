@@ -1,17 +1,16 @@
 <template lang="html">
   <section id="one-player-game-wrapper">
+
     <deck-component id='draw-pile' :deckArray='drawPileArray'  />
 
     <evaluation-button :cardsInPlay="boardArray" />
 
     <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log">
-      <playing-card v-for="(card, index) in boardArray" :key="index" :cardData="card" :newStatus="cardStatusToUpdateTo"/>
+      <playing-card v-for="(card, index) in boardArray" :key="index" :card="card" :newStatus="true"/>
     </draggable>
 
-    <button v-on:click="cardStatusToUpdateTo=true" type="button" name="button">click here to set correct placement</button>
-
     <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
-      <playing-card v-for="(card, index) in handArray" :key="index" :cardData="card"/>
+      <playing-card v-for="(card, index) in handArray" :key="index" :card="card"/>
     </draggable>
 
     <deck-component id='discard-pile' :deckArray='discardArray'/>
@@ -25,7 +24,6 @@ import PlayingCard from './PlayingCard.vue'
 import EvaluationButton from './EvaluationButton.vue'
 import draggable from 'vuedraggable'
 
-
 export default {
   name: 'one-player-game',
 
@@ -37,7 +35,7 @@ export default {
       boardArray: [],
       handArray:[],
       discardArray: [],
-      cardStatusToUpdateTo: false
+      // cardStatusToUpdateTo: null
     }
   },
 
@@ -51,6 +49,12 @@ export default {
   mounted() {
     this.gameSetup();
   },
+
+  computed: {
+    // cardStatusToUpdateTo: function() {
+    //   if ()
+  },
+
 
   methods: {
     gameSetup(){
@@ -102,24 +106,6 @@ export default {
 
     },
 
-    setCorrectPlacement(index) {
-      console.log('wtf')
-      this.boardArray[index].correctPlacement = true
-    },
-
-
-
-    // add: function() {
-    //   this.list.push({ shortTitle: ""});
-    // },
-    // replace: function () {
-    //   this.list = [{ shortTitle: ""}];
-    // },
-    // clone: function (el) {
-    //   return {
-    //     shortTitle: el.shortTitle + " cloned"
-    //   };
-    // },
     log: function (evt) {
       window.console.log(evt);
     }

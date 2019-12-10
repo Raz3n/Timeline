@@ -3,32 +3,23 @@
     <p class="card-title"> {{card.shortTitle}}</p>
     <img :src="card.image" :alt="card.title" />
     <p class="hidden">{{card.year}}</p>
-
-
   </article>
 </template>
 
 <script>
 export default {
   name: 'playing-card',
-  data: function () {
-    return {
-      card: {
-        title: "",
-        image: "",
-        shortTitle: "",
-        year: "",
-        description: "",
-      }
+  data(){
+    return{
+
     }
   },
-  props: ['cardData', 'newStatus'],
+  props: ['card', 'newStatus'],
   mounted: function() {
-    this.card = this.cardData;
   },
   computed: {
     correctPlacement(){
-      return this.newStatus;
+      return this.correctPlacement = this.newStatus;
     }
   },
   methods: {

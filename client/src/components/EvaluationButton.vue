@@ -2,7 +2,6 @@
 
   <button v-on:click="evaluateCard()" name="button">Check if True</button>
 
-
 </template>
 
 <script>
