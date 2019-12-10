@@ -15,6 +15,10 @@ export default {
 
 <style lang="css" scoped>
 
+.hidden{
+  visibility: hidden;
+}
+
 
 .playing-card{
   background: beige;

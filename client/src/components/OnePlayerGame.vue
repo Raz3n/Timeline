@@ -2,21 +2,16 @@
   <section id="one-player-game-wrapper">
     <deck-component id='draw-pile' :deckArray='drawPileArray'  />
 
-
         <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log">
-
-        <playing-card v-for="(card, index) in boardArray" :key="index" :card="card"/>
-
+          <playing-card v-for="(card, index) in boardArray" :key="index" :card="card"/>
         </draggable>
 
         <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
-
           <playing-card v-for="(card, index) in handArray" :key="index" :card="card"/>
-
-
         </draggable>
 
     <deck-component id='discard-pile' :deckArray='discardArray'/>
+
   </section>
 </template>
 
@@ -27,8 +22,9 @@ import draggable from 'vuedraggable'
 
 export default {
   name: 'one-player-game',
-  display: "Two lists",
+
   Order: 1,
+
   data(){
     return {
       drawPileArray: [],
@@ -37,17 +33,18 @@ export default {
       discardArray: []
     }
   },
+
   components: {
     'deck-component': DeckComponent,
     'playing-card': PlayingCard,
     draggable
   },
+
   mounted() {
     this.gameSetup();
-
   },
-  methods: {
 
+  methods: {
     gameSetup(){
       // get all the data
       return fetch('http://localhost:3000/api/cards')
@@ -60,7 +57,6 @@ export default {
         this.dealCard(this.drawPileArray, this.boardArray, 1);
         this.dealCard(this.drawPileArray, this.handArray, 4);
       })
-
     },
 
     shuffleCards(deck){
@@ -88,35 +84,28 @@ export default {
       for (let dealStep = 0; dealStep < number; dealStep++) {
         const card = dealPileArray[0];
         dealPileArray.shift();
-        // console.log('card:', card);
         placePileArray.unshift(card);
       }
       return dealPileArray
 
-      // console.log('All cards dealt')
-
     },
 
-    add: function() {
-      this.list.push({ shortTitle: ""});
-    },
-    replace: function () {
-      this.list = [{ shortTitle: ""}];
-    },
-    clone: function (el) {
-      return {
-        shortTitle: el.shortTitle + " cloned"
-      };
-    },
+    // add: function() {
+    //   this.list.push({ shortTitle: ""});
+    // },
+    // replace: function () {
+    //   this.list = [{ shortTitle: ""}];
+    // },
+    // clone: function (el) {
+    //   return {
+    //     shortTitle: el.shortTitle + " cloned"
+    //   };
+    // },
     log: function (evt) {
       window.console.log(evt);
     }
-
   }
-
 }
-
-
 </script>
 
 <style lang="css" scoped>

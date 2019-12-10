@@ -5,10 +5,10 @@
         Instructions
       </section>
       <section id="play" class="nav">
-        Play
+        <img id="logo-image" src="/timeline-logo.png" alt="Timeline Logo">
       </section>
       <section id="change-rules" class="nav">
-        Change Rules
+        Play & Change Rules
       </section>
     </nav>
       <one-player-game />
@@ -42,6 +42,12 @@ nav{
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
 }
+
+#logo-image{
+  max-width: 35%;
+  padding: 0.3em;
+}
+
 .nav {
 
 }
