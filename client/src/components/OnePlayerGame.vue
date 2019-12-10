@@ -128,7 +128,19 @@ export default {
 
 #board, #hand{
   display: flex;
+  background: rgba(248, 188, 7, 0.1);
+  border-radius: 1em;
+}
 
+#board {
+  padding-left: 5em;
+  padding-right: 5em;
+  margin-bottom: 1em;
+}
+
+#hand {
+  justify-content: space-evenly;
+  width: 80%;
 }
 
 
