@@ -46,3 +46,13 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+.sortable-chosen{
+	background-color: grey;
+	margin: 1em;
+	padding: 1em;
+}
+.sortable-ghost{
+	background-color: grey;
+	margin: 1em;
+}
