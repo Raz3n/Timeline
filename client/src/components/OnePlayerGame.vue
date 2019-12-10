@@ -3,13 +3,16 @@
     <deck-component id='draw-pile' :deckArray='drawPileArray'  />
 
     <evaluation-button :cardsInPlay="boardArray" />
-        <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log">
-          <playing-card v-for="(card, index) in boardArray" :key="index" :card="card"/>
-        </draggable>
 
-        <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
-          <playing-card v-for="(card, index) in handArray" :key="index" :card="card"/>
-        </draggable>
+    <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log">
+      <playing-card v-for="(card, index) in boardArray" :key="index" :cardData="card" :newStatus="cardStatusToUpdateTo"/>
+    </draggable>
+
+    <button v-on:click="cardStatusToUpdateTo=true" type="button" name="button">click here to set correct placement</button>
+
+    <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
+      <playing-card v-for="(card, index) in handArray" :key="index" :cardData="card"/>
+    </draggable>
 
     <deck-component id='discard-pile' :deckArray='discardArray'/>
 
@@ -33,7 +36,8 @@ export default {
       drawPileArray: [],
       boardArray: [],
       handArray:[],
-      discardArray: []
+      discardArray: [],
+      cardStatusToUpdateTo: false
     }
   },
 
@@ -58,9 +62,13 @@ export default {
       .then(cards => this.drawPileArray = this.shuffleCards(cards))
       // deal the shuffled cards
       .then(shuffledCards => {
-        this.dealCard(this.drawPileArray, this.boardArray, 1);
+        this.dealCard(this.drawPileArray, this.boardArray, 1)
+        // // set this dealt card as correctPlacement = true
         this.dealCard(this.drawPileArray, this.handArray, 4);
+        this.boardArray[0].card.title = "something";
       })
+
+
     },
 
     shuffleCards(deck){
@@ -93,6 +101,13 @@ export default {
       return dealPileArray
 
     },
+
+    setCorrectPlacement(index) {
+      console.log('wtf')
+      this.boardArray[index].correctPlacement = true
+    },
+
+
 
     // add: function() {
     //   this.list.push({ shortTitle: ""});

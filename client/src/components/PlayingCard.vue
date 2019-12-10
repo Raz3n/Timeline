@@ -1,15 +1,40 @@
 <template lang="html">
   <article class="playing-card">
     <p class="card-title"> {{card.shortTitle}}</p>
-    <img :src="card.image" :alt="card.title"/>
+    <img :src="card.image" :alt="card.title" />
     <p class="hidden">{{card.year}}</p>
+
+
   </article>
 </template>
 
 <script>
 export default {
   name: 'playing-card',
-  props: ['card']
+  data: function () {
+    return {
+      card: {
+        title: "",
+        image: "",
+        shortTitle: "",
+        year: "",
+        description: "",
+      }
+    }
+  },
+  props: ['cardData', 'newStatus'],
+  mounted: function() {
+    this.card = this.cardData;
+  },
+  computed: {
+    correctPlacement(){
+      return this.newStatus;
+    }
+  },
+  methods: {
+
+  }
+
 }
 </script>
 
