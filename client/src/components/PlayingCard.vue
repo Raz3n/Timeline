@@ -25,9 +25,14 @@ export default {
     box-shadow: 0.1em 0.1em 0.4em grey;
     padding: 1em;
     border-radius: 2em;
-    min-height: 16em;
+    height: 280px;
+    width: 200px;
+    /* min-height: 16em;
     width: 10em;
-    height: 11em;
+    height: 11em; */
+    /* display: grid;
+    grid-template-rows: repeat(11, 1em);
+    grid-template-columns: repeat(10, 1em); */
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -44,21 +49,30 @@ export default {
     -ms-flex-pack: start;
     margin: 0.2em;
     justify-content: flex-start;
+    box-sizing: border-box;
 }
 
 .playing-card .card-title{
   background: white;
-min-width: 100%;
+min-width: 90%;
 padding: 0.5em 0;
 border-radius: 0.2em;
 align-items: center;
 display: flex;
 justify-content: center;
-/* align-self: flex-end; */
+align-self: center;
+margin: auto;
 order: 1;
+/* grid-row: 10 / 11;
+grid-column: 1/10; */
+z-index: 1;
+padding: 0.2em 1em;
+
 }
 
 .playing-card img {
+  grid-row: 1 / 11;
+  grid-column: 1/10;
   max-width: 100%;
     height: 100%;
     -o-object-fit: cover;

@@ -14,8 +14,7 @@ export default {
 
 <style lang="css" scoped>
 .blank-playing-card {
-  /* background: rgb(0,0,0,0.01);
-  box-shadow: 0.1em 0.1em 0.4em grey; */
+
   padding: 1em;
   border-radius: 2em;
   min-height: 16em;

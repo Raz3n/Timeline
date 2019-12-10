@@ -8,10 +8,10 @@
 
         <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
           <playing-card v-for="(card, index) in handArray" :key="index" :card="card"/>
-          <blank-card v-if="handArray.length < 4" />
+          <!-- <blank-card v-if="handArray.length < 4" />
           <blank-card v-if="handArray.length < 3" />
           <blank-card v-if="handArray.length < 2" />
-          <blank-card v-if="handArray.length < 1" />
+          <blank-card v-if="handArray.length < 1" /> -->
         </draggable>
 
     <deck-component id='discard-pile' :deckArray='discardArray'/>
@@ -23,7 +23,7 @@
 import DeckComponent from './DeckComponent.vue'
 import PlayingCard from './PlayingCard.vue'
 import draggable from 'vuedraggable'
-import BlankCard from './BlankCard.vue'
+// import BlankCard from './BlankCard.vue'
 
 export default {
   name: 'one-player-game',
@@ -42,7 +42,7 @@ export default {
   components: {
     'deck-component': DeckComponent,
     'playing-card': PlayingCard,
-    'blank-card': BlankCard,
+    // 'blank-card': BlankCard,
     draggable
   },
 
@@ -145,7 +145,7 @@ export default {
 }
 
 #hand {
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 80%;
 }
 

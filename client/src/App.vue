@@ -31,7 +31,8 @@ export default {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 2fr 12fr 1fr;
-  background-image: url('/table-background.png');
+  background: url('/table-background.png') no-repeat;
+
 }
 
 nav{
