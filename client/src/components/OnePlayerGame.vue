@@ -3,7 +3,7 @@
     <deck-component id='draw-pile' :deckArray='drawPileArray'  />
 
     <evaluation-button :cardsInPlay="boardArray" />
-        <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log">
+        <draggable class="board-array flash" id="board" :list="boardArray" group="cards" @change="log">
           <playing-card v-for="(card, index) in boardArray" :key="index" :card="card"/>
         </draggable>
 
@@ -114,7 +114,6 @@ export default {
 
 <style lang="css" scoped>
 
-
 #one-player-game-wrapper{
   grid-row: 2 / 3;
   grid-column: 1 / 4;
@@ -147,5 +146,19 @@ export default {
   width: 80%;
 }
 
+@-webkit-keyframes flash {
+ 0%, 50%, 100% { opacity: 1; }
+ 25%, 75% { opacity: 0; }
+}
+@keyframes flash {
+ 0%, 50%, 100% { opacity: 1; }
+ 25%, 75% { opacity: 0; }
+}
+
+.flash:hover {
+ opacity: 1;
+ -webkit-animation: flash 1s;
+ animation: flash 1s;
+}
 
 </style>
