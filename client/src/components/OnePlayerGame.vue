@@ -5,12 +5,24 @@
 
     <evaluation-button :cardsInPlay="boardArray" />
 
+  <!-- :startingCard ="checkStarting" -->
     <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log">
-      <playing-card v-for="(card, index) in boardArray" :key="index" :card="card" :newStatus="true"/>
+      <playing-card
+      v-for="(card, index) in boardArray"
+      :key="index"
+      :card="card"
+      :dateHidden="false"
+
+      />
     </draggable>
 
+
     <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
-      <playing-card v-for="(card, index) in handArray" :key="index" :card="card"/>
+      <playing-card
+      v-for="(card, index) in handArray"
+      :key="index"
+      :card="card"
+      :dateHidden="true"/>
     </draggable>
 
     <deck-component id='discard-pile' :deckArray='discardArray'/>
@@ -57,6 +69,10 @@ export default {
 
 
   methods: {
+    checkStatus() {
+      // if card is in boardArray then true.
+    },
+
     gameSetup(){
       // get all the data
       return fetch('http://localhost:3000/api/cards')
@@ -67,9 +83,7 @@ export default {
       // deal the shuffled cards
       .then(shuffledCards => {
         this.dealCard(this.drawPileArray, this.boardArray, 1)
-        // // set this dealt card as correctPlacement = true
         this.dealCard(this.drawPileArray, this.handArray, 4);
-        this.boardArray[0].card.title = "something";
       })
 
 

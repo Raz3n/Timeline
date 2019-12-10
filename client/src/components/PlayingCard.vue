@@ -2,7 +2,7 @@
   <article class="playing-card">
     <p class="card-title"> {{card.shortTitle}}</p>
     <img :src="card.image" :alt="card.title" />
-    <p class="hidden">{{card.year}}</p>
+    <p :class="getBoardStatus()" >{{card.year}}</p>
   </article>
 </template>
 
@@ -14,26 +14,34 @@ export default {
 
     }
   },
-  props: ['card', 'newStatus'],
+  props: ['card', 'dateHidden'],
   mounted: function() {
   },
   computed: {
-    correctPlacement(){
-      return this.correctPlacement = this.newStatus;
-    }
+    // correctPlacement(){
+    //   return this.correctPlacement = this.newStatus;
+    // }
   },
-  methods: {
+  methods:{
+      getBoardStatus(){
+          return {
+              'date-hidden': this.dateHidden === true,
+              'date-display': this.dateHidden === false
+            }
+          }
+        }
+      }
 
-  }
-
-}
 </script>
 
 <style lang="css" scoped>
 
-.hidden{
-  visibility: hidden;
+.date-hidden{
+visibility: hidden;
 }
+
+.date-display{
+  visibility: visible;}
 
 
 .playing-card{
