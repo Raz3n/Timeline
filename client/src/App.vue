@@ -2,7 +2,7 @@
   <div id="app">
     <nav>
       <section id="instructions" class="nav">
-        Instructions
+        <button v-on:click="selectInstructions" type="button" name="button">View Instructions</button>
       </section>
       <section id="play" class="nav">
         <img id="logo-image" src="/timeline-logo.png" alt="Timeline Logo">
@@ -36,6 +36,9 @@ export default {
     },
     selectOnePlayerGame(){
       this.currentView = "OnePlayerGame"
+    },
+    selectviewInstructions(){
+      this.currentView = "ViewInstructions"
     }
   },
   components: {
