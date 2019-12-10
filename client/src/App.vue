@@ -8,20 +8,39 @@
         <img id="logo-image" src="/timeline-logo.png" alt="Timeline Logo">
       </section>
       <section id="change-rules" class="nav">
-        Play & Change Rules
+        <button v-on:click="selectViewFullDeck" type="button" name="button">View Full Deck</button>
+        <button v-on:click="selectOnePlayerGame" type="button" name="button">Play One Player</button>
+
       </section>
     </nav>
-      <one-player-game />
+      <one-player-game  v-if="currentView === 'OnePlayerGame'"/>
+      <view-full-deck  v-if="currentView === 'ViewFullDeck'"/>
     <footer> Scores </footer>
 </div>
 </template>
 
 <script>
-import OnePlayerGame from './components/OnePlayerGame.vue'
+import OnePlayerGame from './components/OnePlayerGame.vue';
+import ViewFullDeck from './components/ViewFullDeck.vue';
+
 export default {
   name: 'app',
+  data() {
+    return{
+      currentView: "OnePlayerGame"
+    }
+  },
+  methods: {
+    selectViewFullDeck(){
+      this.currentView = "ViewFullDeck"
+    },
+    selectOnePlayerGame(){
+      this.currentView = "OnePlayerGame"
+    }
+  },
   components: {
-    'one-player-game': OnePlayerGame
+    'one-player-game': OnePlayerGame,
+    'view-full-deck': ViewFullDeck
   }
 }
 </script>
@@ -32,7 +51,6 @@ export default {
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 2fr 12fr 1fr;
   background: url('/table-background.png') no-repeat;
-
 }
 
 nav{
