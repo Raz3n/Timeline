@@ -1,7 +1,7 @@
 <template lang="html">
   <article class="playing-card">
     <p class="card-title"> {{card.shortTitle}}</p>
-    <img :src="card.image" alt="Title"/>
+    <img :src="card.image" :alt="card.title"/>
     <p class="hidden">{{card.year}}</p>
   </article>
 </template>
