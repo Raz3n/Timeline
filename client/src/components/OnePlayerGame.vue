@@ -4,19 +4,19 @@
 
     <evaluation-button :cardsInPlay="boardArray" />
         <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log">
-
-        <playing-card v-for="(card, index) in boardArray" :key="index" :card="card"/>
-
+          <playing-card v-for="(card, index) in boardArray" :key="index" :card="card"/>
         </draggable>
 
         <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
-
           <playing-card v-for="(card, index) in handArray" :key="index" :card="card"/>
-
-
+          <blank-card v-if="handArray.length < 4" />
+          <blank-card v-if="handArray.length < 3" />
+          <blank-card v-if="handArray.length < 2" />
+          <blank-card v-if="handArray.length < 1" />
         </draggable>
 
     <deck-component id='discard-pile' :deckArray='discardArray'/>
+
   </section>
 </template>
 
@@ -25,11 +25,13 @@ import DeckComponent from './DeckComponent.vue'
 import PlayingCard from './PlayingCard.vue'
 import EvaluationButton from './EvaluationButton.vue'
 import draggable from 'vuedraggable'
+import BlankCard from './BlankCard.vue'
 
 export default {
   name: 'one-player-game',
-  display: "Two lists",
+
   Order: 1,
+
   data(){
     return {
       drawPileArray: [],
@@ -38,18 +40,23 @@ export default {
       discardArray: []
     }
   },
+
   components: {
     'deck-component': DeckComponent,
     'playing-card': PlayingCard,
+<<<<<<< HEAD
     'evaluation-button': EvaluationButton,
+=======
+    'blank-card': BlankCard,
+>>>>>>> develop
     draggable
   },
+
   mounted() {
     this.gameSetup();
-
   },
-  methods: {
 
+  methods: {
     gameSetup(){
       // get all the data
       return fetch('http://localhost:3000/api/cards')
@@ -62,7 +69,6 @@ export default {
         this.dealCard(this.drawPileArray, this.boardArray, 1);
         this.dealCard(this.drawPileArray, this.handArray, 4);
       })
-
     },
 
     shuffleCards(deck){
@@ -90,35 +96,28 @@ export default {
       for (let dealStep = 0; dealStep < number; dealStep++) {
         const card = dealPileArray[0];
         dealPileArray.shift();
-        // console.log('card:', card);
         placePileArray.unshift(card);
       }
       return dealPileArray
 
-      // console.log('All cards dealt')
-
     },
 
-    add: function() {
-      this.list.push({ shortTitle: ""});
-    },
-    replace: function () {
-      this.list = [{ shortTitle: ""}];
-    },
-    clone: function (el) {
-      return {
-        shortTitle: el.shortTitle + " cloned"
-      };
-    },
+    // add: function() {
+    //   this.list.push({ shortTitle: ""});
+    // },
+    // replace: function () {
+    //   this.list = [{ shortTitle: ""}];
+    // },
+    // clone: function (el) {
+    //   return {
+    //     shortTitle: el.shortTitle + " cloned"
+    //   };
+    // },
     log: function (evt) {
       window.console.log(evt);
     }
-
   }
-
 }
-
-
 </script>
 
 <style lang="css" scoped>
@@ -141,7 +140,19 @@ export default {
 
 #board, #hand{
   display: flex;
+  background: rgba(248, 188, 7, 0.1);
+  border-radius: 1em;
+}
 
+#board {
+  padding-left: 5em;
+  padding-right: 5em;
+  margin-bottom: 1em;
+}
+
+#hand {
+  justify-content: space-between;
+  width: 80%;
 }
 
 

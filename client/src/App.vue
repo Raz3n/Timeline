@@ -5,10 +5,10 @@
         Instructions
       </section>
       <section id="play" class="nav">
-        Play
+        <img id="logo-image" src="/timeline-logo.png" alt="Timeline Logo">
       </section>
       <section id="change-rules" class="nav">
-        Change Rules
+        Play & Change Rules
       </section>
     </nav>
       <one-player-game />
@@ -31,17 +31,24 @@ export default {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 2fr 12fr 1fr;
+  background-image: url('/table-background.png');
 }
 
 nav{
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row: 1 / 2;
-  background: red;
+  background: rgba(248, 188, 7, 0.9);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
 }
+
+#logo-image{
+  max-width: 35%;
+  padding: 0.3em;
+}
+
 .nav {
 
 }
@@ -72,7 +79,7 @@ nav{
 footer {
   grid-row: 3 /4;
   grid-column: 1/4;
-  background: red;
+  background: rgba(248, 188, 7, 0.9);
 }
 
 
