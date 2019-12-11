@@ -30,8 +30,6 @@
 </template>
 
 <script>
-import PlayingCard from './PlayingCard.vue'
-
 export default {
   name: 'view-full-deck',
 
