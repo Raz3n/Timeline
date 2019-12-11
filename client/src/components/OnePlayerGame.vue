@@ -50,12 +50,22 @@ export default {
   mounted() {
     this.gameSetup()
     this.setStaticHand()
+    this.setStaticBoard()
+    // eventBus.$on('check-card', (card) => {
+    //
+    // })
     eventBus.$on('wrong-card', (card) => {
       console.log(card);
       const index = this.boardArray.indexOf(card)
       this.boardArray.splice(index, 1)// fix this
       this.discardArray.push(card);
     })
+    eventBus.$on('game-over-loser', () => {
+      console.log('you suck')
+    });
+    eventBus.$on('continue-game', () => {
+      console.log('continue...')
+    });
   },
 
   methods: {
@@ -112,10 +122,12 @@ export default {
       this.staticHand = this.handArray
     },
 
-    checkPlayedCard() {
-      for (card in boardArray)
-      boardArray.includes(playedCard)
-    },
+    // checkPlayedCard() {
+    //   const playedCard = card
+    //   for (card in boardArray)
+    //   if (boardArray.includes(playedCard))
+    //   discardArray.push(playedCard)
+    // },
 
     // add: function() {
     //   this.list.push({ shortTitle: ""});
