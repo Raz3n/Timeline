@@ -51,20 +51,33 @@ export default {
     justify-content: flex-start;
     box-sizing: border-box; */
 
-    display: flex;
+  /* display: flex; */
   height: 280px;
   width: 200px;
-  background-color: #17141d;
+  background-color: beige;
   border-radius: 10px;
-  box-shadow: -1rem 0 3rem #000;
-/*   margin-left: -50px; */
+  box-shadow: 0.1em 0.1em 0.4em grey;
   transition: 0.4s ease-out;
   position: relative;
   left: 0px;
 }
 
+.playing-card:not(:first-child) {
+    margin-left: -20px;
+}
+
+.playing-card:hover  {
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+}
+
+.playing-card .sortable-chosen {
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+}
+
 .playing-card .card-title{
-  background: white;
+/* background: white;
 min-width: 90%;
 padding: 0.5em 0;
 border-radius: 0.2em;
@@ -73,11 +86,11 @@ display: flex;
 justify-content: center;
 align-self: center;
 margin: auto;
-order: 1;
+order: 1; */
 /* grid-row: 10 / 11;
 grid-column: 1/10; */
-z-index: 1;
-padding: 0.2em 1em;
+/* z-index: 1;
+padding: 0.2em 1em; */
 
 }
 

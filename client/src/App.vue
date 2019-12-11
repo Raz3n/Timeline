@@ -5,11 +5,11 @@
         <button v-on:click="selectViewInstructions" type="button" name="button">View Instructions</button>
       </section>
       <section id="play" class="nav">
-        <img id="logo-image" src="/timeline-logo.png" alt="Timeline Logo">
+        <img v-on:click="selectOnePlayerGame" id="logo-image" src="/timeline-logo.png" alt="Timeline Logo">
       </section>
       <section id="change-rules" class="nav">
         <button v-on:click="selectViewFullDeck" type="button" name="button">View Full Deck</button>
-        <button v-on:click="selectOnePlayerGame" type="button" name="button">Play One Player</button>
+        <!-- <button v-on:click="selectOnePlayerGame" type="button" name="button">Play One Player</button> -->
 
       </section>
 
