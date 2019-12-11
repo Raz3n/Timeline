@@ -2,7 +2,7 @@
   <section id="view-full-deck-wrapper">
 <button v-on:click="sortByYear()" type="button">Sort by year</button>
     <!-- Insert Components Needed To Render Entire Deck Here  -->
-<ul id="flex">
+<ul v-if="currentView === 'default'" id="flex">
   <!-- Want the UL to be flex -->
   <li v-for="(card, index) in currentDeck"  >
     <playing-card :card='card':key="index" />
@@ -12,7 +12,7 @@
   </li>
 </ul>
 
-<ul id="flex">
+<ul v-if="currentView === 'chronological'" id="flex">
   <!-- Want the UL to be flex -->
   <li v-for="(card, index) in deckByYear"  >
     <playing-card :card='card':key="index" />
@@ -37,7 +37,8 @@ export default {
   data(){
     return {
       currentDeck: [],
-      deckByYear: []
+      deckByYear: [],
+      currentView: 'default'
     }
   },
 
@@ -72,6 +73,7 @@ export default {
         return 0;
       })
       this.deckByYear = chronologicallySortedCards;
+      this.currentView = 'chronological'
     }
   }
 }
