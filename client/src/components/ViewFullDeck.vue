@@ -24,12 +24,19 @@ export default {
 
   mounted() {
     // this.gameSetup();
-    // this.deckSetup
+    this.deckSetup();
   },
 
   methods: {
     deckSetup(){
       // get all the data
+      return fetch('http://localhost:3000/api/cards')
+
+      .then(res => res.json())
+
+      .then(cards => this.currentDeck = cards)
+
+
       // understand the data
       // return these cards as a full deck called 'this.currentDeck'
     }
