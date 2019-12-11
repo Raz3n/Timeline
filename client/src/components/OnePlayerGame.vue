@@ -72,51 +72,37 @@ export default {
     console.log('current Static Hand:', this.staticHand);
     console.log('current Static Board:', this.staticBoard);
 
-
-      // let commonCard = this.boardArray.forEach(card => {
-      //   if ( this.staticHand.includes(card) ) {
-      //
-      //   } return card
-      // });
       let commonCard;
+
+      // loop through to find matching cards
       for(var i = 0; i < this.boardArray.length; i++){
-        console.log("static hand:", this.staticHand);
-        console.log("current card:", this.boardArray[i]);
         let foundCardTrue = this.staticHand.includes(this.boardArray[i])
         if (foundCardTrue === true) {
           commonCard = this.boardArray[i]
       }};
-        console.log('common Card:', commonCard);
 
     //finding index of this commoncard from above
       const index = this.boardArray.indexOf(commonCard);
-      console.log('log index of common card:', index);
 
     // removing said from boardarry to then put it in our discard array.
-      // this.boardArray.splice(index, 1);
-      console.log('current boardArray:', this.boardArray);
-      // this.boardArray.splice(index, 0);
       this.boardArray = [];
       this.boardArray = this.staticBoard;
-      console.log('boardArray AFTER reset:', this.boardArray)
-      // this.boardArray = this.staticBoard;
       this.discardArray.push(commonCard);
-
     // deal new card
       this.dealCard(this.drawPileArray, this.handArray, 1)
-
     //taking a new "snapshot" of the hand and board
-        this.setStaticHand()
-        this.setStaticBoard()
-      });
+      this.setStaticHand()
+      this.setStaticBoard()
+    });
 
     eventBus.$on('game-over-loser', () => {
       console.log('you suck')
     });
 
     eventBus.$on('continue-game', () => {
-      // console.log('continue...')
-      this.dealCard(this.drawPileArray, this.handArray, 1)
+      // deal new card to hand
+      this.dealCard(this.drawPileArray, this.handArray, 1);
+      // set up new snapshots
       this.setStaticHand();
       this.setStaticBoard();
     });
