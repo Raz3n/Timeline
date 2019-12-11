@@ -2,7 +2,7 @@
   <article class="playing-card">
     <p class="card-title"> {{card.shortTitle}}</p>
     <img :src="card.image" :alt="card.title"/>
-    <p class="hidden">{{card.year}}</p>
+    <p class="card-year">{{card.year}}</p>
   </article>
 </template>
 
@@ -83,19 +83,19 @@ export default {
 
 .playing-card .card-title{
   font-weight: 300;
-    position: absolute;
-    left: calc(50% - 90px);
-    bottom: 15px;
-    background: white;
-    width: 180px;
-    min-height: 40px;
-    padding: 3px 10px;
-    border-radius: 4px;
-    box-sizing: border-box;
-    z-index: 1;
-
-    /* align-items: center; */
-    text-align: center;
+  position: absolute;
+  left: calc(50% - 82px);
+  bottom: 15px;
+  background: white;
+  width: 165px;
+  min-height: 40px;
+  padding: 3px 10px;
+  border-radius: 8px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  z-index: 3;
+  border: 3px solid rgba(203,177,54, 1);
+  text-align: center;
     /* justify-content: center;
 /* background: white;
 min-width: 90%;
@@ -112,6 +112,21 @@ grid-column: 1/10; */
 /* z-index: 1;
 padding: 0.2em 1em; */
 
+}
+.playing-card .card-year{
+  position: absolute;
+    font-size: 1.2em;
+    color: white;
+    background: rgba(152,203,52, 0.9);
+    padding: 4px 10px;
+    min-width: 60px;
+    text-align: center;
+    height: 19px;
+    bottom: calc(22% - 10px);
+    z-index: 2;
+    left: calc(50% - 46px);
+    box-sizing: content-box;
+    border: 3px solid rgba(203,177,54, 1);
 }
 
 .playing-card img {
