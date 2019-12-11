@@ -145,7 +145,10 @@ export default {
 }
 
 .button-container {
-  
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  justify-content: space-between;
 }
 
 
