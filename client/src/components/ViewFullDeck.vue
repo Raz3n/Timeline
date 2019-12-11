@@ -2,8 +2,8 @@
   <section id="view-full-deck-wrapper">
 
 <section class="button-container" >
-  <button v-on:click="sortByYear()" type="button">Sort by year</button>
-  <button v-on:click="sortByDefault()" type="button">Sort by default</button>
+  <button class="button" v-on:click="sortByYear()" type="button">Sort by year</button>
+  <button class="button" v-on:click="sortByDefault()" type="button">Sort by default</button>
 </section>
 
     <!-- Insert Components Needed To Render Entire Deck Here  -->
@@ -147,9 +147,14 @@ export default {
 .button-container {
   display: flex;
   flex-direction: row;
-  width: 40%;
-  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 100%;
+  justify-content: space-evenly;
 }
+
+/* .button {
+  background: black;
+} */
 
 
 </style>
