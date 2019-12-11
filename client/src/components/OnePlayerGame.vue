@@ -65,38 +65,60 @@ export default {
   },
 
   mounted() {
-    this.gameSetup()
-    this.setStaticHand()
-    this.setStaticBoard()
+    this.gameSetup();
 
-    // eventBus.$on('check-card', (card) => {
-    //   });
+    eventBus.$on('a-card-was-wrong', () => {
+    // finding the commonCard thats in boardArray and staticHand
+    console.log('current Static Hand:', this.staticHand);
+    console.log('current Static Board:', this.staticBoard);
 
-    eventBus.$on('a-card-was-wrong', (card) => {
-      // finding the commonCard thats in boardArray and staticHand
-      const commonCard = this.boardArray.forEach(card => {
-        if ( this.staticHand.includes(card) ) {
-          return card
-        }
 
-        //finding index of this commoncard from above
-        const index = this.boardArray.indexOf(commonCard);
-        // removing said from boardarry to then put it in our discard array.
-        this.boardArray.splice(index, 1);
-        this.discardArray.push(commonCard);
-        // deal new card
-        this.dealCard(this.drawPileArray, this.handArray, 1)
-        //taking a new "snapshot" of the hand
-        this.staticHand = this.handArray
-      })
-    });
+      // let commonCard = this.boardArray.forEach(card => {
+      //   if ( this.staticHand.includes(card) ) {
+      //
+      //   } return card
+      // });
+      let commonCard;
+      for(var i = 0; i < this.boardArray.length; i++){
+        console.log("static hand:", this.staticHand);
+        console.log("current card:", this.boardArray[i]);
+        let foundCardTrue = this.staticHand.includes(this.boardArray[i])
+        if (foundCardTrue === true) {
+          commonCard = this.boardArray[i]
+      }};
+        console.log('common Card:', commonCard);
+
+    //finding index of this commoncard from above
+      const index = this.boardArray.indexOf(commonCard);
+      console.log('log index of common card:', index);
+
+    // removing said from boardarry to then put it in our discard array.
+      // this.boardArray.splice(index, 1);
+      console.log('current boardArray:', this.boardArray);
+      // this.boardArray.splice(index, 0);
+      this.boardArray = [];
+      this.boardArray = this.staticBoard;
+      console.log('boardArray AFTER reset:', this.boardArray)
+      // this.boardArray = this.staticBoard;
+      this.discardArray.push(commonCard);
+
+    // deal new card
+      this.dealCard(this.drawPileArray, this.handArray, 1)
+
+    //taking a new "snapshot" of the hand and board
+        this.setStaticHand()
+        this.setStaticBoard()
+      });
 
     eventBus.$on('game-over-loser', () => {
       console.log('you suck')
     });
 
     eventBus.$on('continue-game', () => {
-      console.log('continue...')
+      // console.log('continue...')
+      this.dealCard(this.drawPileArray, this.handArray, 1)
+      this.setStaticHand();
+      this.setStaticBoard();
     });
 
   },
@@ -113,6 +135,8 @@ export default {
       .then(shuffledCards => {
         this.dealCard(this.drawPileArray, this.boardArray, 1);
         this.dealCard(this.drawPileArray, this.handArray, 4);
+        this.setStaticHand();
+        this.setStaticBoard();
       })
     },
 
@@ -138,22 +162,30 @@ export default {
     },
 
     dealCard(dealPileArray, placePileArray, number){
+      if (dealPileArray.length === 0)
+      {console.log('Winner Winner Chicken Dinner!');
+    return false;}
+      else if ( placePileArray.length > 4)
+      {console.log('Too many cards CHEATER')
+    return false;}
+
+      else{
+
       for (let dealStep = 0; dealStep < number; dealStep++) {
         const card = dealPileArray[0];
         dealPileArray.shift();
         placePileArray.unshift(card);
       }
+    }
       return dealPileArray
-
     },
 
-
     setStaticBoard() {
-      this.staticBoard = this.boardArray
+      this.staticBoard = this.boardArray.map(card => card)
     },
 
     setStaticHand() {
-      this.staticHand = this.handArray
+      this.staticHand = this.handArray.map(card => card)
     },
 
     // checkPlayedCard() {
