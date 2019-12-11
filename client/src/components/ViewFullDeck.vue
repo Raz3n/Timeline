@@ -1,12 +1,14 @@
 <template lang="html">
   <section id="view-full-deck-wrapper">
-
+<button v-on:click="sortByYear()" type="button">Sort by year</button>
     <!-- Insert Components Needed To Render Entire Deck Here  -->
 <ul id="flex">
   <!-- Want the UL to be flex -->
   <li v-for="(card, index) in currentDeck"  >
     <playing-card :card='card':key="index" />
-    {{ card.description }}
+    <!-- <p>{{ card.title}}</p> -->
+    <p>{{ card.year}}</p>
+    <p>{{ card.description }}</p>
   </li>
 </ul>
 
@@ -49,7 +51,30 @@ export default {
 
       // understand the data
       // return these cards as a full deck called 'this.currentDeck'
+    },
+    sortByYear() {
+      copyOfCurrentDeck = this.currentDeck.map((card) => {return card});
+      chronologicallySortedCards
+
+
+      this.currentDeck.sort(function(a, b) {
+        if(a.year < b.year) { return -1; }
+        if(a.year > b.year) { return -1; }
+        return 0;
+      })
     }
+
+    copyOfUsers = users.map((user) => {return user});
+sortedUsers = copyOfUsers.sort(function(a, b){
+    if(a.year < b.year) { return -1; }
+    if(a.year > b.year) { return 1; }
+    return 0;
+})
+
+console.log('u',users);
+console.log('c',copyOfUsers);
+console.log('sorted',sortedUsers);
+
   }
 }
 </script>
