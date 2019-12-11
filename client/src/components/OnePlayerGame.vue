@@ -117,8 +117,8 @@ export default {
 #one-player-game-wrapper{
   grid-row: 2 / 3;
   grid-column: 1 / 4;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   justify-content: space-evenly;
   padding: 1em;
   align-items: center;
@@ -129,12 +129,12 @@ export default {
   visibility: hidden;
 }
 
-#board, #hand{
+/* #board, #hand{
   display: flex;
   background: rgba(248, 188, 7, 0.1);
   border-radius: 1em;
-}
-
+} */
+/*
 #board {
   padding-left: 5em;
   padding-right: 5em;
@@ -144,6 +144,27 @@ export default {
 #hand {
   justify-content: flex-start;
   width: 80%;
+} */
+.board-array{
+  position: relative;
+  height: 300px;
+  width: 1000px;
+  top: 60px;
+  left: calc(50% - 500px);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4em;
+  background: rgba(248, 188, 7, 0.1);
+}
+
+.hand-array{
+  position: relative;
+  height: 300px;
+  width: 800px;
+  bottom: -10px;
+  left: calc(50% - 400px);
+  display: flex;
+  background: rgba(248, 188, 7, 0.1);
 }
 
 @-webkit-keyframes flash {
