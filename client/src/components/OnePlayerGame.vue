@@ -2,14 +2,31 @@
   <section id="one-player-game-wrapper">
     <deck-component id='draw-pile' :deckArray='drawPileArray'  />
 
-    <evaluation-button :cardsInPlay="boardArray" />
-        <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log">
-          <playing-card v-for="(card, index) in boardArray" :key="index" :card="card"/>
-        </draggable>
+    <section id="board-container">
+
+      <section :class="instructionsClass" id="help-left" >
+        <img src="/left-arrow.svg" alt="left arrow" /> before this event </section>
+
+      <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log" >
+        <playing-card v-for="(card, index) in boardArray" :key="index" :card="card" />
+      </draggable>
+
+      <section :class="instructionsClass" id="help-right" >
+        <img src="/right-arrow.svg" alt="right arrow" /> after this event </section>
+
+      </section>
+
+      <!-- to make disappear :class="evaluationClass" -->
+      <evaluation-button  class="button" id="evaluation" :cardsInPlay="boardArray" />
+
+      <section id="game-container">
 
         <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
           <playing-card v-for="(card, index) in handArray" :key="index" :card="card"/>
         </draggable>
+
+      </section>
+
 
     <deck-component id='discard-pile' :deckArray='discardArray'/>
 
@@ -126,6 +143,7 @@ export default {
 
     },
 
+<<<<<<< HEAD
     setStaticBoard() {
       this.staticBoard = this.boardArray
     },
@@ -140,6 +158,8 @@ export default {
     //   if (boardArray.includes(playedCard))
     //   discardArray.push(playedCard)
     // },
+=======
+>>>>>>> develop
 
     // add: function() {
     //   this.list.push({ shortTitle: ""});
@@ -155,34 +175,57 @@ export default {
     log: function (evt) {
       window.console.log(evt);
     }
+  },
+  computed:{
+    helpInstructions() {
+        if ( this.boardArray.length !== 1) { return false}
+        else {return true}
+    },
+
+    instructionsClass() {
+      return {
+      'fade': this.helpInstructions === false
+      }
+    },
+
+    evaluationClass() {
+      return {
+        'fadereverse': this.helpInstructions === false
+        }
+      }
+    }
   }
-}
+
 </script>
 
 <style lang="css" scoped>
 
-
 #one-player-game-wrapper{
   grid-row: 2 / 3;
-  grid-column: 1 / 4;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  padding: 1em;
-  align-items: center;
-  min-height: 35em;
+    grid-column: 1 / 4;
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
+    justify-content: space-evenly;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: 35em;
 }
+
 
 .hidden{
   visibility: hidden;
 }
 
-#board, #hand{
+/* #board, #hand{
   display: flex;
   background: rgba(248, 188, 7, 0.1);
   border-radius: 1em;
-}
-
+} */
+/*
 #board {
   padding-left: 5em;
   padding-right: 5em;
@@ -192,7 +235,96 @@ export default {
 #hand {
   justify-content: flex-start;
   width: 80%;
+} */
+
+#board-container{
+  /* position: relative; */
+    width: 100%;
+    min-height: 100px;
+    left: calc(50% - 500px);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    align-items: center;
 }
+
+
+.board-array{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.hand-array{
+  position: relative;
+  height: 300px;
+  width: 800px;
+  bottom: -10px;
+  /* left: calc(50% - 400px); */
+  display: flex;
+  justify-content: center;
+
+}
+
+@-webkit-keyframes fadeout {
+  0% { opacity: 1;}
+  100% { opacity: 0;}
+}
+
+@keyframes fadeout {
+  0% { opacity: 1;}
+  100% { opacity: 0;}
+}
+
+.fade{
+  opacity: 1;
+  -webkit-animation: fadeout 0.5s;
+  animation: fadeout 0.5s forwards;
+}
+
+#evaluation{
+  opacity: 1;
+    /* position: relative; */
+    left: calc(50% - 50px);
+    width: 100px;
+    margin: 1em;
+}
+
+@-webkit-keyframes fadein {
+  0% { opacity: 0;}
+  100% { opacity: 1;}
+}
+
+@keyframes fadein {
+  0% { opacity: 0;}
+  100% { opacity: 1;}
+}
+
+.fadereverse {
+  opacity: 0;
+  -webkit-animation: fadein 2s;
+  animation: fadein 2fs forwards;
+}
+
+#evaluation:hover{
+  opacity:1;
+}
+
+#help-right{
+  margin-left: 1%;
+  position: relative;
+  top: calc(34% - 10px);
+}
+#help-left{
+  margin-right: 1%;
+  position: relative;
+  top: calc(34% - 10px);}
 
 
 </style>
