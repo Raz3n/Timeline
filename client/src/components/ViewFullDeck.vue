@@ -1,25 +1,37 @@
 <template lang="html">
   <section id="view-full-deck-wrapper">
-<button v-on:click="sortByYear()" type="button">Sort by year</button>
-<button v-on:click="sortByDefault()" type="button">Sort by default</button>
+
+<section class="button-container" >
+  <button v-on:click="sortByYear()" type="button">Sort by year</button>
+  <button v-on:click="sortByDefault()" type="button">Sort by default</button>
+</section>
+
     <!-- Insert Components Needed To Render Entire Deck Here  -->
-<ul class="flex-container" v-if="currentView === 'default'">
+<ul class="flex-container card-and-information-container" v-if="currentView === 'default'">
   <!-- Want the UL to be flex -->
-  <li class="flex-item" v-for="(card, index) in currentDeck"  >
+  <li class="flex-container card-and-information" v-for="(card, index) in currentDeck"  >
+
     <playing-card :card='card':key="index" />
-    <!-- <p>{{ card.title}}</p> -->
-    <p>{{ card.year}}</p>
-    <p>{{ card.description }}</p>
+
+    <section class="information">
+      <p>{{ card.title}}</p>
+      <p>{{ card.year}}</p>
+      <p>{{ card.description }}</p>
+    </section>
+
   </li>
 </ul>
 
-<ul class="flex-container" v-if="currentView === 'chronological'" id="flex">
+<ul class="flex-container card-and-information-container" v-if="currentView === 'chronological'" id="flex">
   <!-- Want the UL to be flex -->
-  <li class="flex-item" v-for="(card, index) in deckByYear"  >
+  <li class="flex-container card-and-information" v-for="(card, index) in deckByYear"  >
     <playing-card :card='card':key="index" />
     <!-- <p>{{ card.title}}</p> -->
-    <p>{{ card.year}}</p>
-    <p>{{ card.description }}</p>
+    <section class="information">
+      <p>{{ card.year}}</p>
+      <p>{{ card.description }}</p>
+    </section>
+
   </li>
 </ul>
 
@@ -99,14 +111,41 @@ export default {
 
 .flex-container {
   display: flex;
+
+}
+
+.card-and-information-container{
+
+  display: flex;
+
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: stretch;
   align-content: space-evenly;
+
+  background: purple;
 }
 
-.flex-item {
+.card-and-information {
+  background: green;
+  padding: 1em;
+
+  display: flex;
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+
+}
+
+.information {
+  background: red;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.button-container {
+  
 }
 
 
