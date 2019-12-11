@@ -67,7 +67,12 @@ export default {
 }
 
 .playing-card:hover  {
-  transform: translateY(-20px);
+  transform: translateX(-20px);
+  transition: 0.4s ease-out;
+}
+
+.playing-card:hover ~ .playing-card:not {
+  transform: translateX(20px);
   transition: 0.4s ease-out;
 }
 
@@ -77,6 +82,21 @@ export default {
 }
 
 .playing-card .card-title{
+  font-weight: 300;
+    position: absolute;
+    left: calc(50% - 90px);
+    bottom: 15px;
+    background: white;
+    width: 180px;
+    min-height: 40px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    z-index: 1;
+
+    /* align-items: center; */
+    text-align: center;
+    /* justify-content: center;
 /* background: white;
 min-width: 90%;
 padding: 0.5em 0;
@@ -95,10 +115,14 @@ padding: 0.2em 1em; */
 }
 
 .playing-card img {
-  grid-row: 1 / 11;
-  grid-column: 1/10;
-  max-width: 100%;
-    height: 100%;
+  position: relative;
+  left: calc(50% - 90px);
+  margin-top: 5%;
+  height: 260px;
+  width: 180px;
+  /* z-index: -1; */
+  max-width: 90%;
+    max-height: 90%;
     -o-object-fit: cover;
     object-fit: cover;
 }
