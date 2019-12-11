@@ -2,16 +2,18 @@
   <section id="one-player-game-wrapper">
     <deck-component id='draw-pile' :deckArray='drawPileArray'  />
 
-    <evaluation-button class="button" id="evaluation" :cardsInPlay="boardArray" />
         <draggable class="board-array flash" id="board" :list="boardArray" group="cards" @change="log">
           <section :class="instructionsClass" id="help-left" > <img src="/left-arrow.svg" alt="left arrow"> before this event </section>
           <playing-card v-for="(card, index) in boardArray" :key="index" :card="card"/>
           <section :class="instructionsClass" id="help-right" ><img src="/right-arrow.svg" alt="right arrow"> after this event</section>
         </draggable>
 
+        <evaluation-button :class="evaluationClass" class="button" id="evaluation" :cardsInPlay="boardArray" />
+
         <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
           <playing-card v-for="(card, index) in handArray" :key="index" :card="card"/>
         </draggable>
+
 
     <deck-component id='discard-pile' :deckArray='discardArray'/>
 
@@ -115,18 +117,24 @@ export default {
   },
   computed:{
     helpInstructions() {
-      {
         if ( this.boardArray.length !== 1) { return false}
         else {return true}
-    }
     },
+
     instructionsClass() {
       return {
       'fade': this.helpInstructions === false
+      }
+    },
+
+    evaluationClass() {
+      return {
+        'fadereverse': this.helpInstructions === false
+        }
+      }
     }
-  },
   }
-}
+
 </script>
 
 <style lang="css" scoped>
@@ -167,12 +175,13 @@ export default {
   position: relative;
   height: 300px;
   width: 1000px;
-  top: 60px;
   left: calc(50% - 500px);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
-  margin-bottom: 4em;
-  /* background: rgba(248, 188, 7, 0.1); */
 }
 
 .hand-array{
@@ -210,6 +219,37 @@ export default {
   100% { opacity: 0;}
 }
 
+.fade{
+  opacity: 1;
+  -webkit-animation: fadeout 0.5s;
+  animation: fadeout 0.5s forwards;
+}
+
+#evaluation{
+  opacity: 0;
+    position: relative;
+    left: calc(50% - 50px);
+    width: 100px;
+    margin: 1em;
+}
+
+@-webkit-keyframes fadein {
+  100% { opacity: 1;}
+  0% { opacity: 0;}
+}
+
+@keyframes fadein {
+  100% { opacity: 1;}
+  0% { opacity: 0;}
+}
+
+.fadereverse {
+  opacity: 0;
+  -webkit-animation: fadein 2s;
+  animation: fadein 2s forwards;
+
+}
+
 #help-right{
   margin-left: 5%;
   position: relative;
@@ -220,14 +260,7 @@ export default {
   position: relative;
   top: calc(34% - 10px);}
 
-.fade{
-  opacity: 1;
-  -webkit-animation: fadeout 2s;
-  animation: fadeout 2s forwards;
-}
 
 
-#evaluation{
 
-}
 </style>
