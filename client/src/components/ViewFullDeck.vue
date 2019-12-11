@@ -12,6 +12,16 @@
   </li>
 </ul>
 
+<ul id="flex">
+  <!-- Want the UL to be flex -->
+  <li v-for="(card, index) in deckByYear"  >
+    <playing-card :card='card':key="index" />
+    <!-- <p>{{ card.title}}</p> -->
+    <p>{{ card.year}}</p>
+    <p>{{ card.description }}</p>
+  </li>
+</ul>
+
     <!-- <playing-card v-for="(card, index) in currentDeck" :key="index" :card="card"/>
     <div v-for="(card, index) in currentDeck" :key="index"> -->
 
