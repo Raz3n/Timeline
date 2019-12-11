@@ -51,21 +51,33 @@ export default {
     this.gameSetup()
     this.setStaticHand()
     this.setStaticBoard()
+
     // eventBus.$on('check-card', (card) => {
-    //
-    // })
-    eventBus.$on('wrong-card', (card) => {
-      console.log(card);
-      const index = this.boardArray.indexOf(card)
-      this.boardArray.splice(index, 1)// fix this
-      this.discardArray.push(card);
-    })
+    //   });
+
+    eventBus.$on('a-card-was-wrong', (card) => {
+      const commonCard = this.boardArray.forEach(card => {
+        if ( this.staticHand.includes(card) ) {
+          return card
+        }
+
+        const index = this.boardArray.indexOf(commonCard);
+        this.boardArray.splice(index, 1);
+        this.discardArray.push(commonCard);
+        // deal new card
+        this.dealCard(this.drawPileArray, this.handArray, 1)
+        this.staticHand = this.handArray
+      })
+    });
+
     eventBus.$on('game-over-loser', () => {
       console.log('you suck')
     });
+
     eventBus.$on('continue-game', () => {
       console.log('continue...')
     });
+
   },
 
   methods: {
