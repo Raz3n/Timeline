@@ -57,3 +57,17 @@ table {
 	background-color: grey;
 	margin: 1em;
 } */
+
+
+.button {
+margin: 10px;
+padding: 10px;
+background: rgba(207, 84, 54);
+border: none;
+border-radius: 10px;
+color: white;
+}
+
+.button:hover {
+background: rgba(208, 108, 7, 0.9);
+}

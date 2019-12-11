@@ -2,13 +2,13 @@
   <div id="app">
     <nav>
       <section id="instructions" class="nav">
-        <button v-on:click="selectViewInstructions" type="button" name="button">View Instructions</button>
+        <button v-on:click="selectViewInstructions" class="button" type="button" name="button">View Instructions</button>
       </section>
       <section id="play" class="nav">
         <img v-on:click="selectOnePlayerGame" id="logo-image" src="/timeline-logo.png" alt="Timeline Logo">
       </section>
       <section id="change-rules" class="nav">
-        <button v-on:click="selectViewFullDeck" type="button" name="button">View Full Deck</button>
+        <button v-on:click="selectViewFullDeck" class="button" type="button" name="button">View Full Deck</button>
         <!-- <button v-on:click="selectOnePlayerGame" type="button" name="button">Play One Player</button> -->
 
       </section>
@@ -107,6 +107,7 @@ footer {
   grid-column: 1/4;
   background: rgba(248, 188, 7, 0.9);
 }
+
 
 
 </style>

@@ -66,12 +66,12 @@ export default {
     margin-left: -20px;
 }
 
-.playing-card:hover  {
+#hand .playing-card:hover  {
   transform: translateX(-20px);
   transition: 0.4s ease-out;
 }
 
-.playing-card:hover ~ .playing-card:not {
+#hand .playing-card:hover ~ .playing-card:not {
   transform: translateX(20px);
   transition: 0.4s ease-out;
 }

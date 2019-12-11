@@ -2,7 +2,7 @@
   <section id="one-player-game-wrapper">
     <deck-component id='draw-pile' :deckArray='drawPileArray'  />
 
-    <evaluation-button :cardsInPlay="boardArray" />
+    <evaluation-button class="button" id="evaluation" :cardsInPlay="boardArray" />
         <draggable class="board-array flash" id="board" :list="boardArray" group="cards" @change="log">
           <playing-card v-for="(card, index) in boardArray" :key="index" :card="card"/>
         </draggable>
@@ -182,4 +182,7 @@ export default {
  animation: flash 1s;
 }
 
+#evaluation{
+  
+}
 </style>
