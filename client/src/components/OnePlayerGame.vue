@@ -2,17 +2,30 @@
   <section id="one-player-game-wrapper">
     <deck-component id='draw-pile' :deckArray='drawPileArray'  />
 
-        <draggable class="board-array flash" id="board" :list="boardArray" group="cards" @change="log">
-          <section :class="instructionsClass" id="help-left" > <img src="/left-arrow.svg" alt="left arrow"> before this event </section>
-          <playing-card v-for="(card, index) in boardArray" :key="index" :card="card"/>
-          <section :class="instructionsClass" id="help-right" ><img src="/right-arrow.svg" alt="right arrow"> after this event</section>
-        </draggable>
+    <section id="board-container">
 
-        <evaluation-button :class="evaluationClass" class="button" id="evaluation" :cardsInPlay="boardArray" />
+      <section :class="instructionsClass" id="help-left" >
+        <img src="/left-arrow.svg" alt="left arrow" /> before this event </section>
+
+      <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log" >
+        <playing-card v-for="(card, index) in boardArray" :key="index" :card="card" />
+      </draggable>
+
+      <section :class="instructionsClass" id="help-right" >
+        <img src="/right-arrow.svg" alt="right arrow" /> after this event </section>
+
+      </section>
+
+      <!-- to make disappear :class="evaluationClass" -->
+      <evaluation-button  class="button" id="evaluation" :cardsInPlay="boardArray" />
+
+      <section id="game-container">
 
         <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
           <playing-card v-for="(card, index) in handArray" :key="index" :card="card"/>
         </draggable>
+
+      </section>
 
 
     <deck-component id='discard-pile' :deckArray='discardArray'/>
@@ -141,13 +154,17 @@ export default {
 
 #one-player-game-wrapper{
   grid-row: 2 / 3;
-  grid-column: 1 / 4;
-  /* display: flex;
-  flex-direction: column; */
-  justify-content: space-evenly;
-  padding: 1em;
-  align-items: center;
-  min-height: 35em;
+    grid-column: 1 / 4;
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
+    justify-content: space-evenly;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: 35em;
 }
 
 
@@ -171,11 +188,22 @@ export default {
   justify-content: flex-start;
   width: 80%;
 } */
+
+#board-container{
+  /* position: relative; */
+    width: 1000px;
+    min-height: 100px;
+    left: calc(50% - 500px);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+
 .board-array{
-  position: relative;
-  height: 300px;
-  width: 1000px;
-  left: calc(50% - 500px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -226,28 +254,31 @@ export default {
 }
 
 #evaluation{
-  opacity: 0;
-    position: relative;
+  opacity: 1;
+    /* position: relative; */
     left: calc(50% - 50px);
     width: 100px;
     margin: 1em;
 }
 
 @-webkit-keyframes fadein {
-  100% { opacity: 1;}
   0% { opacity: 0;}
+  100% { opacity: 1;}
 }
 
 @keyframes fadein {
-  100% { opacity: 1;}
   0% { opacity: 0;}
+  100% { opacity: 1;}
 }
 
 .fadereverse {
   opacity: 0;
   -webkit-animation: fadein 2s;
-  animation: fadein 2s forwards;
+  animation: fadein 2fs forwards;
+}
 
+#evaluation:hover{
+  opacity:1;
 }
 
 #help-right{

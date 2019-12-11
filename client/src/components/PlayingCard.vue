@@ -61,6 +61,7 @@ export default {
   transition: 0.4s ease-out;
   position: relative;
   left: 0px;
+  z-index: 1;
 }
 
 #hand .playing-card:not(:first-child) {
@@ -123,7 +124,8 @@ padding: 0.2em 1em; */
   position: absolute;
     font-size: 1.2em;
     color: white;
-    background: rgba(152,203,52, 0.9);
+    background: rgb(78,84,5);
+background: linear-gradient(90deg, rgba(78,84,5,1) 0%, rgba(142,133,3,1) 41%, rgba(255,220,0,1) 93%);
     padding: 4px 10px;
     min-width: 60px;
     text-align: center;
