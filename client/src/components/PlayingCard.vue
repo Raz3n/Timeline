@@ -53,6 +53,7 @@ export default {
 
   /* display: flex; */
   height: 280px;
+  min-width: 200px;
   width: 200px;
   background-color: beige;
   border-radius: 10px;
