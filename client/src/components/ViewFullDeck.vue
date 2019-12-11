@@ -2,7 +2,17 @@
   <section id="view-full-deck-wrapper">
 
     <!-- Insert Components Needed To Render Entire Deck Here  -->
-    Blank Page for inserting a full deck index view/page
+<ul id="flex">
+  <!-- Want the UL to be flex -->
+  <li v-for="(card, index) in currentDeck"  >
+    <playing-card :card='card':key="index" />
+    {{ card.description }}
+  </li>
+</ul>
+
+    <!-- <playing-card v-for="(card, index) in currentDeck" :key="index" :card="card"/>
+    <div v-for="(card, index) in currentDeck" :key="index"> -->
+
   </section>
 </template>
 
