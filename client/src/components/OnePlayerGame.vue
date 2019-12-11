@@ -72,9 +72,9 @@ export default {
     console.log('current Static Hand:', this.staticHand);
     console.log('current Static Board:', this.staticBoard);
 
-      let commonCard;
+    let commonCard;
 
-      // loop through to find matching cards
+    // loop through to find matching cards
       for(var i = 0; i < this.boardArray.length; i++){
         let foundCardTrue = this.staticHand.includes(this.boardArray[i])
         if (foundCardTrue === true) {
