@@ -3,9 +3,9 @@
 <button v-on:click="sortByYear()" type="button">Sort by year</button>
 <button v-on:click="sortByDefault()" type="button">Sort by default</button>
     <!-- Insert Components Needed To Render Entire Deck Here  -->
-<ul v-if="currentView === 'default'" id="flex">
+<ul class="flex-container" v-if="currentView === 'default'">
   <!-- Want the UL to be flex -->
-  <li v-for="(card, index) in currentDeck"  >
+  <li class="flex-item" v-for="(card, index) in currentDeck"  >
     <playing-card :card='card':key="index" />
     <!-- <p>{{ card.title}}</p> -->
     <p>{{ card.year}}</p>
@@ -13,9 +13,9 @@
   </li>
 </ul>
 
-<ul v-if="currentView === 'chronological'" id="flex">
+<ul class="flex-container" v-if="currentView === 'chronological'" id="flex">
   <!-- Want the UL to be flex -->
-  <li v-for="(card, index) in deckByYear"  >
+  <li class="flex-item" v-for="(card, index) in deckByYear"  >
     <playing-card :card='card':key="index" />
     <!-- <p>{{ card.title}}</p> -->
     <p>{{ card.year}}</p>
@@ -96,6 +96,18 @@ export default {
   padding: 1em;
   align-items: center;
   min-height: 35em;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  align-content: space-evenly;
+}
+
+.flex-item {
 }
 
 
