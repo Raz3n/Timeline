@@ -191,7 +191,7 @@ export default {
 
 #board-container{
   /* position: relative; */
-    width: 1000px;
+    width: 100%;
     min-height: 100px;
     left: calc(50% - 500px);
     display: -webkit-box;
@@ -200,6 +200,7 @@ export default {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    align-items: center;
 }
 
 
@@ -217,25 +218,11 @@ export default {
   height: 300px;
   width: 800px;
   bottom: -10px;
-  left: calc(50% - 400px);
+  /* left: calc(50% - 400px); */
   display: flex;
-  /* background: rgba(248, 188, 7, 0.1); */
-}
+  justify-content: center;
 
-@-webkit-keyframes flash {
- 0%, 50%, 100% { opacity: 1; }
- 25%, 75% { opacity: 0; }
 }
-@keyframes flash {
- 0%, 50%, 100% { opacity: 1; }
- 25%, 75% { opacity: 0; }
-}
-
-/* .flash:hover {
- opacity: 1;
- -webkit-animation: flash 1s;
- animation: flash 1s;
-} */
 
 @-webkit-keyframes fadeout {
   0% { opacity: 1;}
@@ -282,16 +269,14 @@ export default {
 }
 
 #help-right{
-  margin-left: 5%;
+  margin-left: 1%;
   position: relative;
   top: calc(34% - 10px);
 }
 #help-left{
-  margin-right: 5%;
+  margin-right: 1%;
   position: relative;
   top: calc(34% - 10px);}
-
-
 
 
 </style>
