@@ -1,6 +1,7 @@
 <template lang="html">
   <section id="view-full-deck-wrapper">
 <button v-on:click="sortByYear()" type="button">Sort by year</button>
+<button v-on:click="sortByDefault()" type="button">Sort by default</button>
     <!-- Insert Components Needed To Render Entire Deck Here  -->
 <ul v-if="currentView === 'default'" id="flex">
   <!-- Want the UL to be flex -->
@@ -74,6 +75,10 @@ export default {
       })
       this.deckByYear = chronologicallySortedCards;
       this.currentView = 'chronological'
+    },
+
+    sortByDefault() {
+      this.currentView = 'default'
     }
   }
 }
