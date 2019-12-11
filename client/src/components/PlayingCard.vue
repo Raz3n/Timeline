@@ -21,19 +21,19 @@ export default {
 
 
 .playing-card{
-  background: beige;
+  /* background: beige;
     box-shadow: 0.1em 0.1em 0.4em grey;
     padding: 1em;
     border-radius: 2em;
     height: 280px;
-    width: 200px;
+    width: 200px; */
     /* min-height: 16em;
     width: 10em;
     height: 11em; */
     /* display: grid;
     grid-template-rows: repeat(11, 1em);
     grid-template-columns: repeat(10, 1em); */
-    display: -webkit-box;
+    /* display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
@@ -49,7 +49,18 @@ export default {
     -ms-flex-pack: start;
     margin: 0.2em;
     justify-content: flex-start;
-    box-sizing: border-box;
+    box-sizing: border-box; */
+
+    display: flex;
+  height: 280px;
+  width: 200px;
+  background-color: #17141d;
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
+/*   margin-left: -50px; */
+  transition: 0.4s ease-out;
+  position: relative;
+  left: 0px;
 }
 
 .playing-card .card-title{
