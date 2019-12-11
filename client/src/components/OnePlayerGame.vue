@@ -73,16 +73,20 @@ export default {
     //   });
 
     eventBus.$on('a-card-was-wrong', (card) => {
+      // finding the commonCard thats in boardArray and staticHand
       const commonCard = this.boardArray.forEach(card => {
         if ( this.staticHand.includes(card) ) {
           return card
         }
 
+        //finding index of this commoncard from above
         const index = this.boardArray.indexOf(commonCard);
+        // removing said from boardarry to then put it in our discard array.
         this.boardArray.splice(index, 1);
         this.discardArray.push(commonCard);
         // deal new card
         this.dealCard(this.drawPileArray, this.handArray, 1)
+        //taking a new "snapshot" of the hand
         this.staticHand = this.handArray
       })
     });
@@ -143,7 +147,7 @@ export default {
 
     },
 
-<<<<<<< HEAD
+
     setStaticBoard() {
       this.staticBoard = this.boardArray
     },
@@ -158,8 +162,6 @@ export default {
     //   if (boardArray.includes(playedCard))
     //   discardArray.push(playedCard)
     // },
-=======
->>>>>>> develop
 
     // add: function() {
     //   this.list.push({ shortTitle: ""});
