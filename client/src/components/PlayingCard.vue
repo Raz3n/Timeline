@@ -62,9 +62,14 @@ export default {
   left: 0px;
 }
 
-.playing-card:not(:first-child) {
+#hand .playing-card:not(:first-child) {
     margin-left: -20px;
 }
+
+#board .playing-card:not(:first-child) {
+    margin: 10px;
+}
+
 
 #hand .playing-card:hover  {
   transform: translateX(-20px);

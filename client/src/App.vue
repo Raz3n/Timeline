@@ -75,6 +75,10 @@ nav{
   padding: 0.3em;
 }
 
+#logo-image:hover{
+  opacity: 0.8;
+}
+
 .nav {
 
 }

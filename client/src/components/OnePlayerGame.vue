@@ -4,7 +4,9 @@
 
     <evaluation-button class="button" id="evaluation" :cardsInPlay="boardArray" />
         <draggable class="board-array flash" id="board" :list="boardArray" group="cards" @change="log">
+          <section :class="instructionsClass" id="help-left" > <img src="/left-arrow.svg" alt="left arrow"> before this event </section>
           <playing-card v-for="(card, index) in boardArray" :key="index" :card="card"/>
+          <section :class="instructionsClass" id="help-right" ><img src="/right-arrow.svg" alt="right arrow"> after this event</section>
         </draggable>
 
         <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
@@ -34,6 +36,7 @@ export default {
       boardArray: [],
       handArray:[],
       discardArray: []
+      // helpInstructions: null
     }
   },
 
@@ -94,6 +97,7 @@ export default {
 
     },
 
+
     // add: function() {
     //   this.list.push({ shortTitle: ""});
     // },
@@ -108,6 +112,19 @@ export default {
     log: function (evt) {
       window.console.log(evt);
     }
+  },
+  computed:{
+    helpInstructions() {
+      {
+        if ( this.boardArray.length !== 1) { return false}
+        else {return true}
+    }
+    },
+    instructionsClass() {
+      return {
+      'fade': this.helpInstructions === false
+    }
+  },
   }
 }
 </script>
@@ -124,6 +141,7 @@ export default {
   align-items: center;
   min-height: 35em;
 }
+
 
 .hidden{
   visibility: hidden;
@@ -154,7 +172,7 @@ export default {
   display: flex;
   justify-content: center;
   margin-bottom: 4em;
-  background: rgba(248, 188, 7, 0.1);
+  /* background: rgba(248, 188, 7, 0.1); */
 }
 
 .hand-array{
@@ -164,7 +182,7 @@ export default {
   bottom: -10px;
   left: calc(50% - 400px);
   display: flex;
-  background: rgba(248, 188, 7, 0.1);
+  /* background: rgba(248, 188, 7, 0.1); */
 }
 
 @-webkit-keyframes flash {
@@ -176,13 +194,40 @@ export default {
  25%, 75% { opacity: 0; }
 }
 
-.flash:hover {
+/* .flash:hover {
  opacity: 1;
  -webkit-animation: flash 1s;
  animation: flash 1s;
+} */
+
+@-webkit-keyframes fadeout {
+  0% { opacity: 1;}
+  100% { opacity: 0;}
 }
 
+@keyframes fadeout {
+  0% { opacity: 1;}
+  100% { opacity: 0;}
+}
+
+#help-right{
+  margin-left: 5%;
+  position: relative;
+  top: calc(34% - 10px);
+}
+#help-left{
+  margin-right: 5%;
+  position: relative;
+  top: calc(34% - 10px);}
+
+.fade{
+  opacity: 1;
+  -webkit-animation: fadeout 2s;
+  animation: fadeout 2s forwards;
+}
+
+
 #evaluation{
-  
+
 }
 </style>
