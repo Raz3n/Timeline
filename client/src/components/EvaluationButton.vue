@@ -8,7 +8,7 @@
 <script>
 
 import OnePlayerGame from './OnePlayerGame.vue'
-
+import {eventBus} from '../main.js'
 
 export default {
   name: 'evaluation-button',
@@ -25,7 +25,7 @@ export default {
 
       for (let i = 0; i < this.cardsInPlay.length; i++)
        {
-         // debugger
+
         const leftCard = this.cardsInPlay[i -1];
         const rightCard = this.cardsInPlay[i +1];
         const card = this.cardsInPlay[i];
@@ -39,16 +39,20 @@ export default {
         // const rightCard = this.cardsInPlay[rightCardIndex];
 
         //if there is a left card and its year is more than the card year return false
-        if (leftCard && parseInt(leftCard.year) > parseInt(card.year)) {
+        if (
+          (leftCard && parseInt(leftCard.year) > parseInt(card.year)) ||
+          (rightCard && parseInt(rightCard.year) < parseInt(card.year))) {
           console.log(i);
           console.log("incorrect - left card higher")
+          eventBus.$emit('wrong-card', card)
         }
         //if there is a right card and its year is more than the card year return false
 
-        else if (rightCard && parseInt(rightCard.year) < parseInt(card.year)) {
-          console.log(i);
-          console.log("incorrect - right card lower")
-          }
+        // else if (rightCard && parseInt(rightCard.year) < parseInt(card.year)) {
+        //   console.log(i);
+        //   console.log("incorrect - right card lower")
+        //   eventBus.$emit(this.card)
+        //   }
 
           else {
             console.log(i);

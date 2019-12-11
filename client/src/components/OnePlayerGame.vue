@@ -21,6 +21,7 @@ import DeckComponent from './DeckComponent.vue'
 import PlayingCard from './PlayingCard.vue'
 import EvaluationButton from './EvaluationButton.vue'
 import draggable from 'vuedraggable'
+import {eventBus} from '../main.js'
 
 
 export default {
@@ -33,7 +34,9 @@ export default {
       drawPileArray: [],
       boardArray: [],
       handArray:[],
-      discardArray: []
+      discardArray:[],
+      staticHand: [],
+      staticBoard: []
     }
   },
 
@@ -45,7 +48,14 @@ export default {
   },
 
   mounted() {
-    this.gameSetup();
+    this.gameSetup()
+    this.setStaticHand()
+    eventBus.$on('wrong-card', (card) => {
+      console.log(card);
+      const index = this.boardArray.indexOf(card)
+      this.boardArray.splice(index, 1)// fix this
+      this.discardArray.push(card);
+    })
   },
 
   methods: {
@@ -92,6 +102,19 @@ export default {
       }
       return dealPileArray
 
+    },
+
+    setStaticBoard() {
+      this.staticBoard = this.boardArray
+    },
+
+    setStaticHand() {
+      this.staticHand = this.handArray
+    },
+
+    checkPlayedCard() {
+      for (card in boardArray)
+      boardArray.includes(playedCard)
     },
 
     // add: function() {
