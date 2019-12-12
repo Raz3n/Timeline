@@ -8,7 +8,7 @@
         <img src="/left-arrow.svg" alt="left arrow" /> before this event </section>
 
       <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log" >
-        <playing-card v-for="(card, index) in boardArray" :key="index" :card="card" />
+        <playing-card v-for="(card, index) in boardArray" :key="index" :card="card" :status="staticBoard" />
       </draggable>
 
       <section :class="instructionsClass" id="help-right" >
@@ -17,12 +17,12 @@
       </section>
 
       <!-- to make disappear :class="evaluationClass" -->
-      <evaluation-button  class="button" id="evaluation" :cardsInPlay="boardArray" />
+      <evaluation-button  class="button" id="evaluation" :cardsInPlay="boardArray" :failSafe="failSafe"/>
 
       <section id="game-container">
 
         <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
-          <playing-card v-for="(card, index) in handArray" :key="index" :card="card"/>
+          <playing-card v-for="(card, index) in handArray" :key="index" :card="card" :status="staticBoard"/>
         </draggable>
 
       </section>
@@ -38,6 +38,7 @@ import DeckComponent from './DeckComponent.vue'
 import PlayingCard from './PlayingCard.vue'
 import EvaluationButton from './EvaluationButton.vue'
 import draggable from 'vuedraggable'
+import {eventBus} from '../main.js'
 
 
 export default {
@@ -50,8 +51,9 @@ export default {
       drawPileArray: [],
       boardArray: [],
       handArray:[],
-      discardArray: []
-      // helpInstructions: null
+      discardArray:[],
+      staticHand: [],
+      staticBoard: []
     }
   },
 
@@ -64,6 +66,50 @@ export default {
 
   mounted() {
     this.gameSetup();
+
+    eventBus.$on('a-card-was-wrong', () => {
+    // finding the commonCard thats in boardArray and staticHand
+    console.log('current Static Hand:', this.staticHand);
+    console.log('current Static Board:', this.staticBoard);
+
+    let commonCard;
+
+    // loop through to find matching cards
+      for(var i = 0; i < this.boardArray.length; i++){
+        let foundCardTrue = this.staticHand.includes(this.boardArray[i])
+        if (foundCardTrue === true) {
+          commonCard = this.boardArray[i]
+      }};
+
+    //finding index of this commoncard from above
+      const index = this.boardArray.indexOf(commonCard);
+
+    // removing said from boardarry to then put it in our discard array.
+      this.boardArray = [];
+      this.boardArray = this.staticBoard;
+      this.discardArray.push(commonCard);
+    // deal new card
+      this.dealCard(this.drawPileArray, this.handArray, 1)
+    //taking a new "snapshot" of the hand and board
+      this.setStaticHand()
+      this.setStaticBoard()
+    });
+
+    eventBus.$on('game-over-loser', () => {
+      console.log('you suck')
+    });
+
+    eventBus.$on('continue-game', () => {
+      // deal new card to hand
+      this.dealCard(this.drawPileArray, this.handArray, 1);
+      this.boardArray.forEach(card => {
+        card.status = true
+      })
+      // set up new snapshots
+      this.setStaticHand();
+      this.setStaticBoard();
+    });
+
   },
 
   methods: {
@@ -78,6 +124,8 @@ export default {
       .then(shuffledCards => {
         this.dealCard(this.drawPileArray, this.boardArray, 1);
         this.dealCard(this.drawPileArray, this.handArray, 4);
+        this.setStaticHand();
+        this.setStaticBoard();
       })
     },
 
@@ -103,27 +151,32 @@ export default {
     },
 
     dealCard(dealPileArray, placePileArray, number){
+      if (dealPileArray.length === 0)
+      {console.log('Winner Winner Chicken Dinner!');
+    return false;}
+      else if ( placePileArray.length > 4)
+      {console.log('Too many cards CHEATER')
+    return false;}
+
+      else{
+
       for (let dealStep = 0; dealStep < number; dealStep++) {
         const card = dealPileArray[0];
         dealPileArray.shift();
         placePileArray.unshift(card);
       }
+    }
       return dealPileArray
-
     },
 
+    setStaticBoard() {
+      this.staticBoard = this.boardArray.map(card => card)
+    },
 
-    // add: function() {
-    //   this.list.push({ shortTitle: ""});
-    // },
-    // replace: function () {
-    //   this.list = [{ shortTitle: ""}];
-    // },
-    // clone: function (el) {
-    //   return {
-    //     shortTitle: el.shortTitle + " cloned"
-    //   };
-    // },
+    setStaticHand() {
+      this.staticHand = this.handArray.map(card => card)
+    },
+
     log: function (evt) {
       window.console.log(evt);
     }
@@ -144,7 +197,12 @@ export default {
       return {
         'fadereverse': this.helpInstructions === false
         }
-      }
+      },
+
+    failSafe() {
+      return this.staticBoard.length;
+    }
+
     }
   }
 
@@ -167,6 +225,9 @@ export default {
     min-height: 35em;
 }
 
+.active {
+  opacity: 0.8;
+}
 
 .hidden{
   visibility: hidden;
@@ -191,7 +252,7 @@ export default {
 
 #board-container{
   /* position: relative; */
-    width: 100%;
+    max-width: 80%;
     min-height: 100px;
     left: calc(50% - 500px);
     display: -webkit-box;
@@ -201,6 +262,7 @@ export default {
     -ms-flex-pack: center;
     justify-content: center;
     align-items: center;
+    overflow-x: scroll;
 }
 
 

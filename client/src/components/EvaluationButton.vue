@@ -8,60 +8,57 @@
 <script>
 
 import OnePlayerGame from './OnePlayerGame.vue'
-
+import { eventBus } from '../main.js'
 
 export default {
   name: 'evaluation-button',
-  props: ['cardsInPlay'],
+  props: ['cardsInPlay', 'failSafe'],
 
   methods: {
-
     evaluateCard () {
-      // find index of played card
-      // compare to year of left card
-      // let failCounter = 0;
-      // this.cardsInPlay.forEach(function(card, index, array)
+      //checks if there are any changes then returns false
+      if (this.cardsInPlay.length === this.failSafe) {
+        console.log('you have not played a card');
+        return false
+      }
 
+      //set fail counter for checking win/lose/continue condition
+      let failCounter = 0;
 
-      for (let i = 0; i < this.cardsInPlay.length; i++)
-       {
-         // debugger
+      // loop through all the cards and check their individual status
+      for (let i = 0; i < this.cardsInPlay.length; i++){
+
+        // find index of cards to right and left
         const leftCard = this.cardsInPlay[i -1];
         const rightCard = this.cardsInPlay[i +1];
         const card = this.cardsInPlay[i];
 
-        //left card index is the index of array minus 1
-        //right card index is the index of array plus 1
-
-        //define the leftcard as the card at the left card index position
-        //define the right card as the card at the right card index position
-        // const leftCard = this.cardsInPlay[leftCardIndex];
-        // const rightCard = this.cardsInPlay[rightCardIndex];
-
-        //if there is a left card and its year is more than the card year return false
-        if (leftCard && parseInt(leftCard.year) > parseInt(card.year)) {
+        //if there are cards to left or right, check their years
+        if ( (leftCard && parseInt(leftCard.year) > parseInt(card.year)) ||
+        (rightCard && parseInt(rightCard.year) < parseInt(card.year)) ) {
           console.log(i);
-          console.log("incorrect - left card higher")
-        }
-        //if there is a right card and its year is more than the card year return false
+          console.log("incorrect");
+          // emit message that this card is wrong
+          eventBus.$emit('wrong-card', card)
+          // add one to our failure counter
+          failCounter++
 
-        else if (rightCard && parseInt(rightCard.year) < parseInt(card.year)) {
-          console.log(i);
-          console.log("incorrect - right card lower")
-          }
-
-          else {
+        } else {
+            // card is correct
             console.log(i);
-            console.log("correct")      //else card is correct and function ends
-
-          }
+            console.log("correct")
+            eventBus.$emit('reveal-year', card)
         }
-
-      // if (failCounter > 0) {
-      //   console.log('loser')
-      // } else (
-      //   console.log('congrats')
-      // )
+      }
+      console.log('failCounter:', failCounter);
+        // this evaluates the overall check
+      if (failCounter > 0) {
+        // sending message to game that the played card was wrong
+        eventBus.$emit('a-card-was-wrong')
+      } else (
+        // sending message to game that the board is correct
+        eventBus.$emit('continue-game')
+      )
 
     }
   }
