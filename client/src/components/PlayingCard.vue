@@ -2,14 +2,22 @@
   <article class="playing-card">
     <p class="card-title"> {{card.shortTitle}}</p>
     <img :src="card.image" :alt="card.title"/>
-    <p class="card-year">{{card.year}}</p>
+    <p :class="displayStatus">{{card.year}}</p>
   </article>
 </template>
 
 <script>
 export default {
   name: 'playing-card',
-  props: ['card']
+  props: ['card', 'status'],
+  computed: {
+    displayStatus() {
+      return {
+      'hidden': this.status.includes(this.card) !== true,
+      'card-year': this.status.includes(this.card) !== false
+      }
+    }
+  }
 }
 </script>
 
@@ -26,7 +34,6 @@ export default {
   background-color: beige;
   border-radius: 10px;
   box-shadow: 0.1em 0.1em 0.4em grey;
-  /* transition: 0.4s ease-out; */
   position: relative;
   left: 0px;
   z-index: 1;
