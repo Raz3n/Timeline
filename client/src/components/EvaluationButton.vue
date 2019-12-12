@@ -12,10 +12,16 @@ import { eventBus } from '../main.js'
 
 export default {
   name: 'evaluation-button',
-  props: ['cardsInPlay'],
+  props: ['cardsInPlay', 'failSafe'],
 
   methods: {
     evaluateCard () {
+      //checks if there are any changes then returns false
+      if (this.cardsInPlay.length === this.failSafe) {
+        console.log('you have not played a card');
+        return false
+      }
+
       //set fail counter for checking win/lose/continue condition
       let failCounter = 0;
 

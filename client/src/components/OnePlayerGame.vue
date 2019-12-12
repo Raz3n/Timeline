@@ -17,7 +17,7 @@
       </section>
 
       <!-- to make disappear :class="evaluationClass" -->
-      <evaluation-button  class="button" id="evaluation" :cardsInPlay="boardArray" />
+      <evaluation-button  class="button" id="evaluation" :cardsInPlay="boardArray" :failSafe="failSafe"/>
 
       <section id="game-container">
 
@@ -197,7 +197,12 @@ export default {
       return {
         'fadereverse': this.helpInstructions === false
         }
-      }
+      },
+
+    failSafe() {
+      return this.staticBoard.length;
+    }
+
     }
   }
 

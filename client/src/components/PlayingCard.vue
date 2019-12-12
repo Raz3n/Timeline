@@ -17,10 +17,6 @@ export default {
       'card-year': this.status.includes(this.card) !== false
       }
     }
-  },
-  mounted:{
-  // console.log('card status:', status);
-  // console.log('card card:', card);
   }
 }
 </script>

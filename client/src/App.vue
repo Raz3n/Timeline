@@ -17,7 +17,7 @@
       <one-player-game  v-if="currentView === 'OnePlayerGame'" />
       <view-full-deck  v-if="currentView === 'ViewFullDeck'" />
       <view-instructions  v-if="currentView === 'ViewInstructions'" />
-    <!-- <footer> Scores </footer> -->
+    <footer> Scores </footer>
 </div>
 </template>
 
