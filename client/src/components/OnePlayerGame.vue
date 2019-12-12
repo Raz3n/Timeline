@@ -1,9 +1,10 @@
 <template lang="html">
   <section id="one-player-game-wrapper">
-    <deck-component id='draw-pile' :deckArray='drawPileArray'  />
+    <deck-component id='draw-pile' :deckArray='drawPileArray' :deal="true" :discard="false"/>
+
+    <section id="central-channel">
 
     <section id="board-container">
-
       <section :class="instructionsClass" id="help-left" >
         <img src="/left-arrow.svg" alt="left arrow" /> before this event </section>
 
@@ -12,25 +13,22 @@
       </draggable>
 
       <section :class="instructionsClass" id="help-right" >
-        <img src="/right-arrow.svg" alt="right arrow" /> after this event </section>
-
+        <img src="/right-arrow.svg" alt="right arrow" /> after this event
       </section>
 
-      <!-- to make disappear :class="evaluationClass" -->
-      <evaluation-button  class="button" id="evaluation" :cardsInPlay="boardArray" :failSafe="failSafe"/>
+    </section>
 
-      <section id="game-container">
+    <evaluation-button class="button" id="evaluation" :cardsInPlay="boardArray" :failSafe="failSafe"/>
 
         <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
           <playing-card v-for="(card, index) in handArray" :key="index" :card="card" :status="staticBoard" :current="handArray"/>
         </draggable>
 
-      </section>
-      
+    </section>
 
-    <deck-component id='discard-pile' :deckArray='discardArray'/>
+    <end-game v-if="endGame" :message="endGameString" :score="boardArray"/>
+    <deck-component id='discard-pile' :deckArray='discardArray' :deal="false" :discard="true" />
 
-    <end-game v-if="endGame" :message="endGameString"/>
 
   </section>
 </template>
@@ -214,7 +212,6 @@ export default {
        return false;
     },
 
-
     endGameString(){
       if (this.handArray.length === 0) {
         return "endWin"
@@ -228,19 +225,42 @@ export default {
 
 <style lang="css" scoped>
 
+
 #one-player-game-wrapper{
   grid-row: 2 / 3;
-    grid-column: 1 / 4;
-    -webkit-box-pack: space-evenly;
-    -ms-flex-pack: space-evenly;
-    justify-content: space-evenly;
-    padding: 1em;
-    display: flex;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    min-height: 35em;
+  grid-column: 1 / 4;
+
+    /* padding: 1em; */
+    overflow:hidden;
+
+  /* display: flex;
+  flex-direction: rows;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly; */
+
+  display: grid;
+  grid-column-template: 7% 86% 7%;
+
+
+  min-height: 35em;
+
+}
+
+#central-channel {
+  grid-row: 1 / 1;
+  grid-column: 1/2;
+  display: flex;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
 }
 
 .active {
