@@ -20,9 +20,9 @@ export default {
 
     firstOrLastClass() {
       return{
-        'first': this.current.indexOf(this.card) === 0,
+        'first': this.current.length !== 1 && this.current.indexOf(this.card) === 0,
         'playing-card': true,
-        'last': this.current.indexOf(this.card) === this.current.length -1,
+        'last': this.current.length !== 1 && this.current.indexOf(this.card) === this.current.length -1,
 
       }
     }
@@ -121,8 +121,13 @@ export default {
 }
 
 #board .first{
-  margin-left: 100px;
+  margin-left: 200px;
 }
-#board .last{margin-right: 100px;}
 
+#board .last{margin-right: 200px;}
+
+/* #board .last:hover, #board .first:hover {
+  margin-left: 0;
+  margin-right: 0;
+} */
 </style>

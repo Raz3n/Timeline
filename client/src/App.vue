@@ -17,7 +17,7 @@
       <one-player-game  v-if="currentView === 'OnePlayerGame'" />
       <view-full-deck  v-if="currentView === 'ViewFullDeck'" />
       <view-instructions  v-if="currentView === 'ViewInstructions'" />
-    <footer> <p>This has been a Naz and Friends Production</p> </footer>
+    <footer> <p>App by Naz and Friends</p> </footer>
 </div>
 </template>
 
