@@ -2,7 +2,20 @@
   <section id="view-instructions-wrapper">
 
     <!-- Insert Components Needed To Render Entire Deck Here  -->
-    Blank Page for inserting the instructions
+    <!-- Blank Page for inserting the instructions -->
+    <h1>How our version of Timeline works</h1>
+    <p>Timeline is a game in which players learn about history. Each card has a year hidden from the player, and they must use their knowledge to place cards in the correct order.
+    <br><br>We've created a one player variation of the game for us to initially build the app. Future iterations of the project will incorporate 2 or more human players, and competitive computer AI players, to play against.</p>
+
+    <h2>The 1 player variation of the game works as following:</h2>
+    <ol>
+      <li>The computer shuffles the deck from our database.</li>
+      <li>One card, the starter card, is placed face-up in the middle of the board.</li>
+      <li>A small hand of four cards is dealt, facedown at random to the player.</li>
+      <li>The player must choose a card and place it facedown either to the left or right of cards already on the board. Placing it to the left indicates that they believe that the event on the card took place BEFORE the date already displayed on cards to the right of it, and similarly any cards to the right of the card must have taken place AFTER.</li>
+      <li>The computer reveals the year of your card, and evaluates if it is in the correct position.</li>
+      <li>If correct, you go again and play continues until you lose or run out of cards to place.</li>
+    </ol>
   </section>
 </template>
 
@@ -51,5 +64,41 @@ export default {
   min-height: 35em;
 }
 
+h1 {
+  margin: ;
+	padding: ;
+	border: ;
+	font-size: 1.35em;
+  font-weight: bold;
+	font-family: ;
+	vertical-align: ;
+}
+
+h2 {
+  margin: ;
+	padding: ;
+	border: ;
+	font-size: 1.10em;
+  font-weight: bold;
+	font-family: ;
+	vertical-align: ;
+}
+
+ol, ul {
+	list-style: square;
+  /* list-style-image: url('../../public/timeline-logo.png'); */
+  margin-left: 200px;
+  /* display: flex;
+  flex-direction: row; */
+}
+
+/* li {
+  margin-left: 50px;
+  margin-top: 0px;
+} */
+
+#view-instructions-wrapper {
+  margin: 0;
+}
 
 </style>
