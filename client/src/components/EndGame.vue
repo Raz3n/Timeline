@@ -1,5 +1,5 @@
 <template lang="html">
-  <section class="end-game">
+  <section :class="endGameClass">
     <h3 v-if="message === 'endLose'"> You're History </h3>
     <h3 v-if="message === 'endWin'"> You've Won! </h3>
     <p>you got {{this.scoreTotal}} points</p>
@@ -16,6 +16,14 @@ export default {
   name: 'end-game',
   props: ['discardArray', 'message', 'score'],
   computed:{
+    endGameClass(){
+      return{
+        'end-game': true,
+        'win': this.message === 'endWin',
+        'lose': this.message === 'endLose'
+      }
+
+    },
     scoreTotal() {
       return (this.score.length -1)  * 100}
   }
@@ -33,7 +41,6 @@ export default {
 }
 .end-game{
   z-index: 3;
-    background: red;
     padding: 2em;
     max-height: 100px;
     max-width: 420px;
@@ -43,6 +50,12 @@ export default {
     animation: display 3s forwards;
     border-radius: 2em;
     box-shadow: 0em 0.5em 1em grey;
+}
+.win {
+  background: green;
+}
+.lose {
+  background: red;
 }
 
 h3 {
