@@ -30,6 +30,9 @@
 
     <deck-component id='discard-pile' :deckArray='discardArray'/>
 
+    <end-game class="end-game" v-if="discardArray.length > 0"/>
+
+
   </section>
 </template>
 
@@ -37,6 +40,7 @@
 import DeckComponent from './DeckComponent.vue'
 import PlayingCard from './PlayingCard.vue'
 import EvaluationButton from './EvaluationButton.vue'
+import EndGame from './EndGame.vue'
 import draggable from 'vuedraggable'
 import {eventBus} from '../main.js'
 
@@ -61,6 +65,7 @@ export default {
     'deck-component': DeckComponent,
     'playing-card': PlayingCard,
     'evaluation-button': EvaluationButton,
+    'end-game': EndGame,
     draggable
   },
 
