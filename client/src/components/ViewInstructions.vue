@@ -78,16 +78,16 @@ h2 {
   margin: ;
 	padding: ;
 	border: ;
-	font-size: 1.10em;
+	font-size: 1.35em;
   font-weight: bold;
 	font-family: ;
 	vertical-align: ;
 }
 
 ol, ul {
-	list-style: square;
+	list-style-type: decimal;
   /* list-style-image: url('../../public/timeline-logo.png'); */
-  margin-left: 200px;
+  margin-left: 3em;
   /* display: flex;
   flex-direction: row; */
 }
@@ -98,7 +98,7 @@ ol, ul {
 } */
 
 #view-instructions-wrapper {
-  margin: 0;
+  padding: 0;
 }
 
 </style>
