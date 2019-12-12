@@ -1,15 +1,32 @@
 <template lang="html">
-  <article class="playing-card">
+  <article :class="firstOrLastClass">
     <p class="card-title"> {{card.shortTitle}}</p>
     <img :src="card.image" :alt="card.title"/>
-    <p class="card-year">{{card.year}}</p>
+    <p :class="displayStatus">{{card.year}}</p>
   </article>
 </template>
 
 <script>
 export default {
   name: 'playing-card',
-  props: ['card']
+  props: ['card', 'status', 'current'],
+  computed: {
+    displayStatus() {
+      return {
+      'hidden': this.status.includes(this.card) !== true,
+      'card-year': this.status.includes(this.card) !== false
+      }
+    },
+
+    firstOrLastClass() {
+      return{
+        'first': this.current.length !== 1 && this.current.indexOf(this.card) === 0,
+        'playing-card': true,
+        'last': this.current.length !== 1 && this.current.indexOf(this.card) === this.current.length -1,
+
+      }
+    }
+  }
 }
 </script>
 
@@ -20,13 +37,13 @@ export default {
 }
 
 .playing-card{
+  font-family: 'Open Sans', sans-serif;
   height: 280px;
   min-width: 200px;
   width: 200px;
   background-color: beige;
   border-radius: 10px;
   box-shadow: 0.1em 0.1em 0.4em grey;
-  /* transition: 0.4s ease-out; */
   position: relative;
   left: 0px;
   z-index: 1;
@@ -103,4 +120,14 @@ export default {
     object-fit: cover;
 }
 
+#board .first{
+  margin-left: 200px;
+}
+
+#board .last{margin-right: 200px;}
+
+/* #board .last:hover, #board .first:hover {
+  margin-left: 0;
+  margin-right: 0;
+} */
 </style>

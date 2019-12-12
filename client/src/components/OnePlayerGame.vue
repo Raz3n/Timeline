@@ -1,34 +1,34 @@
 <template lang="html">
   <section id="one-player-game-wrapper">
-    <deck-component id='draw-pile' :deckArray='drawPileArray'  />
+    <deck-component id='draw-pile' :deckArray='drawPileArray' :deal="true" :discard="false"/>
+
+    <section id="central-channel">
 
     <section id="board-container">
-
       <section :class="instructionsClass" id="help-left" >
         <img src="/left-arrow.svg" alt="left arrow" /> before this event </section>
 
       <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log" >
-        <playing-card v-for="(card, index) in boardArray" :key="index" :card="card" />
+        <playing-card v-for="(card, index) in boardArray" :key="index" :card="card" :status="staticBoard" :current="boardArray"/>
       </draggable>
 
       <section :class="instructionsClass" id="help-right" >
-        <img src="/right-arrow.svg" alt="right arrow" /> after this event </section>
-
+        <img src="/right-arrow.svg" alt="right arrow" /> after this event
       </section>
 
-      <!-- to make disappear :class="evaluationClass" -->
-      <evaluation-button  class="button" id="evaluation" :cardsInPlay="boardArray" />
+    </section>
 
-      <section id="game-container">
+    <evaluation-button class="button" id="evaluation" :cardsInPlay="boardArray" :failSafe="failSafe"/>
 
         <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
-          <playing-card v-for="(card, index) in handArray" :key="index" :card="card"/>
+          <playing-card v-for="(card, index) in handArray" :key="index" :card="card" :status="staticBoard" :current="handArray"/>
         </draggable>
 
-      </section>
+    </section>
 
+    <end-game v-if="endGame" :message="endGameString" :score="boardArray"/>
+    <deck-component id='discard-pile' :deckArray='discardArray' :deal="false" :discard="true" />
 
-    <deck-component id='discard-pile' :deckArray='discardArray'/>
 
   </section>
 </template>
@@ -37,6 +37,7 @@
 import DeckComponent from './DeckComponent.vue'
 import PlayingCard from './PlayingCard.vue'
 import EvaluationButton from './EvaluationButton.vue'
+import EndGame from './EndGame.vue'
 import draggable from 'vuedraggable'
 import {eventBus} from '../main.js'
 
@@ -61,6 +62,7 @@ export default {
     'deck-component': DeckComponent,
     'playing-card': PlayingCard,
     'evaluation-button': EvaluationButton,
+    'end-game': EndGame,
     draggable
   },
 
@@ -102,6 +104,9 @@ export default {
     eventBus.$on('continue-game', () => {
       // deal new card to hand
       this.dealCard(this.drawPileArray, this.handArray, 1);
+      this.boardArray.forEach(card => {
+        card.status = true
+      })
       // set up new snapshots
       this.setStaticHand();
       this.setStaticBoard();
@@ -174,24 +179,6 @@ export default {
       this.staticHand = this.handArray.map(card => card)
     },
 
-    // checkPlayedCard() {
-    //   const playedCard = card
-    //   for (card in boardArray)
-    //   if (boardArray.includes(playedCard))
-    //   discardArray.push(playedCard)
-    // },
-
-    // add: function() {
-    //   this.list.push({ shortTitle: ""});
-    // },
-    // replace: function () {
-    //   this.list = [{ shortTitle: ""}];
-    // },
-    // clone: function (el) {
-    //   return {
-    //     shortTitle: el.shortTitle + " cloned"
-    //   };
-    // },
     log: function (evt) {
       window.console.log(evt);
     }
@@ -212,6 +199,24 @@ export default {
       return {
         'fadereverse': this.helpInstructions === false
         }
+      },
+
+    failSafe() {
+      return this.staticBoard.length;
+    },
+
+    endGame() {
+       if (this.discardArray.length > 0){
+         return true
+       }
+       return false;
+    },
+
+    endGameString(){
+      if (this.handArray.length === 0) {
+        return "endWin"
+        }
+        return "endLose"
       }
     }
   }
@@ -220,48 +225,60 @@ export default {
 
 <style lang="css" scoped>
 
+
 #one-player-game-wrapper{
   grid-row: 2 / 3;
-    grid-column: 1 / 4;
-    -webkit-box-pack: space-evenly;
-    -ms-flex-pack: space-evenly;
-    justify-content: space-evenly;
-    padding: 1em;
-    display: flex;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    min-height: 35em;
+  grid-column: 1 / 4;
+
+    /* padding: 1em; */
+    overflow:hidden;
+
+  /* display: flex;
+  flex-direction: rows;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly; */
+
+  display: grid;
+  grid-template-columns: 7% 86% 7%;
+
+
+  min-height: 35em;
+
 }
 
+#central-channel {
+  grid-row: 1 / 1;
+  grid-column: 2/ span 1;
+  display: flex;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+}
+
+.active {
+  opacity: 0.8;
+}
 
 .hidden{
   visibility: hidden;
 }
 
-/* #board, #hand{
-  display: flex;
-  background: rgba(248, 188, 7, 0.1);
-  border-radius: 1em;
-} */
-/*
-#board {
-  padding-left: 5em;
-  padding-right: 5em;
-  margin-bottom: 1em;
-}
-
-#hand {
-  justify-content: flex-start;
-  width: 80%;
-} */
-
 #board-container{
-  /* position: relative; */
-    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 90%;
+    overflow: auto;
     min-height: 100px;
     left: calc(50% - 500px);
+    padding: 10px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -269,6 +286,8 @@ export default {
     -ms-flex-pack: center;
     justify-content: center;
     align-items: center;
+    flex-wrap: nowrap;
+
 }
 
 
@@ -279,6 +298,7 @@ export default {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  width: 100%;
 }
 
 .hand-array{
@@ -346,5 +366,10 @@ export default {
   position: relative;
   top: calc(34% - 10px);}
 
+.first{
+
+}
+
+.last{}
 
 </style>
