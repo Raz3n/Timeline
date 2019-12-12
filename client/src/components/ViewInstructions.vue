@@ -4,11 +4,11 @@
     <!-- Insert Components Needed To Render Entire Deck Here  -->
     <!-- Blank Page for inserting the instructions -->
     <h1>How our version of Timeline works</h1>
-    <p>Timeline is a game in which players learn about history. Each card has a year hidden from the player, and they must use their knowledge to place cards in the correct order.
-    <br><br>We've created a one player variation of the game for us to initially build the app. Future iterations of the project will incorporate 2 or more human players, and competitive computer AI players, to play against.</p>
+    <p class="instructions-text">Timeline is a game in which players learn about history. Each card has a year hidden from the player, and they must use their knowledge to place cards in the correct order.</p>
+    <p class="instructions-text">We've created a one player variation of the game for us to initially build the app. Future iterations of the project will incorporate 2 or more human players, and competitive computer AI players, to play against.</p>
 
     <h2>The 1 player variation of the game works as following:</h2>
-    <ol>
+    <ol class="instructions-text">
       <li>The computer shuffles the deck from our database.</li><br>
       <li>One card, the starter card, is placed face-up in the middle of the board.</li><br>
       <li>A small hand of four cards is dealt, facedown at random to the player.</li><br>
@@ -61,7 +61,8 @@ export default {
   padding: 1em;
   align-items: center;
   min-height: 35em;
-  padding: 0;
+  /* padding: 0; */
+  font-family: 'Ubuntu', sans-serif;
 }
 
 h1 {
@@ -72,6 +73,9 @@ h1 {
   font-weight: bold;
 	/* font-family: Merriweather; */
 	vertical-align: ;
+  color: rgba(248, 188, 7, 0.9);
+  color: rgba(207, 84, 54);
+  /* text-decoration: underline; */
 }
 
 h2 {
@@ -82,11 +86,15 @@ h2 {
   font-weight: bold;
 	/* font-family: Merriweather; */
 	vertical-align: ;
+  color: rgba(248, 188, 7, 0.9);
+  color: rgba(207, 84, 54);
+  /* text-decoration: underline; */
 }
 
-/* *:text {
-   font-family: Merriweather;
-} */
+.instructions-text {
+  /* font-size: 2em; */
+
+}
 
 ol, ul {
 	list-style-type: decimal;
