@@ -17,7 +17,7 @@
       <one-player-game  v-if="currentView === 'OnePlayerGame'" />
       <view-full-deck  v-if="currentView === 'ViewFullDeck'" />
       <view-instructions  v-if="currentView === 'ViewInstructions'" />
-    <footer> Scores </footer>
+    <footer> <p>This has been a Naz and Friends Production</p> </footer>
 </div>
 </template>
 
@@ -70,6 +70,7 @@ nav{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
+  box-shadow: 0em 0.2em 0.4em grey;
 }
 
 #logo-image{
@@ -109,11 +110,40 @@ nav{
 }
 
 footer {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  color:white;
   grid-row: 3 /4;
   grid-column: 1/4;
   background: rgba(248, 188, 7, 0.9);
 }
 
+footer p{
+  opacity: 0.1;
+  font-weight: 600;
+}
+
+@-webkit-keyframes highlighty {
+  0% { opacity: 0;
+  font-size: 1em;}
+  100% { opacity: 1;
+  font-size: 1.5em;}
+}
+
+@keyframes highlighty {
+  0% { opacity: 0;
+  font-size: 1em;}
+  100% { opacity: 1;
+  font-size: 1.5em;}
+}
+
+
+footer p:hover{
+  opacity: 1;
+  -webkit-animation: highlighty 0.5s;
+  animation: highlighty 0.5s forwards;
+}
 
 
 </style>

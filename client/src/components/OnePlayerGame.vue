@@ -237,6 +237,7 @@ export default {
     width: 80%;
     min-height: 100px;
     left: calc(50% - 500px);
+    padding: 10px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -244,7 +245,8 @@ export default {
     -ms-flex-pack: center;
     justify-content: center;
     align-items: center;
-    overflow-x: scroll;
+    flex-wrap: nowrap;
+
 }
 
 
@@ -255,6 +257,7 @@ export default {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+    overflow: auto;
 }
 
 .hand-array{
