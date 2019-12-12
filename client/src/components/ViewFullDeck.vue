@@ -1,30 +1,32 @@
 <template lang="html">
   <section id="view-full-deck-wrapper">
-<button v-on:click="sortByYear()" type="button">Sort by year</button>
-<button v-on:click="sortByDefault()" type="button">Sort by default</button>
-    <!-- Insert Components Needed To Render Entire Deck Here  -->
-<ul class="flex-container" v-if="currentView === 'default'">
-  <!-- Want the UL to be flex -->
-  <li class="flex-item" v-for="(card, index) in currentDeck"  >
-    <playing-card :card='card':key="index" />
-    <!-- <p>{{ card.title}}</p> -->
-    <p>{{ card.year}}</p>
-    <p>{{ card.description }}</p>
-  </li>
-</ul>
 
-<ul class="flex-container" v-if="currentView === 'chronological'" id="flex">
-  <!-- Want the UL to be flex -->
-  <li class="flex-item" v-for="(card, index) in deckByYear"  >
-    <playing-card :card='card':key="index" />
-    <!-- <p>{{ card.title}}</p> -->
-    <p>{{ card.year}}</p>
-    <p>{{ card.description }}</p>
-  </li>
-</ul>
+    <section id="full-deck-button-container">
+      <button v-on:click="sortByYear()" type="button">Sort by year</button>
+      <button v-on:click="sortByDefault()" type="button">Sort by default</button>
+    </section>
 
-    <!-- <playing-card v-for="(card, index) in currentDeck" :key="index" :card="card"/>
-    <div v-for="(card, index) in currentDeck" :key="index"> -->
+    <section class="view-flex-container" v-if="currentView === 'default'">
+      <article class="database-item" v-for="(card, index) in currentDeck"  >
+        <playing-card :card='card':key="index" :status="[]" :current="[]" />
+        <aside class="extra-information">
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.year }}</p>
+          <p class="description">{{ card.description }}</p>
+        </aside>
+      </article>
+    </section>
+
+    <section class="view-flex-container" v-if="currentView === 'chronological'">
+      <article class="database-item" v-for="(card, index) in currentDeck"  >
+        <playing-card :card='card':key="index" />
+        <aside class="extra-information">
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.year }}</p>
+          <p class="description">{{ card.description }}</p>
+        </aside>
+      </article>
+    </section>
 
   </section>
 </template>
@@ -91,10 +93,51 @@ export default {
   grid-column: 1 / 4;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   padding: 1em;
   align-items: center;
-  min-height: 35em;
+  /* min-height: 35em; */
+  /* flex-wrap: wrap; */
+}
+
+#full-deck-button-container{
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* background: red; */
+  width: 40%;
+}
+
+.view-flex-container {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+.database-item{
+  margin-bottom: 1em;
+  margin-left: 1em;
+  display: flex;
+  flex-grow: 1;
+  max-width: 45%;
+  box-sizing: border-box;
+  border: 1px solid red;
+}
+
+.extra-information{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 60%;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+.extra-information h3{
+  font-weight: 600;
+  font-size: 1.6em;
 }
 
 .flex-container {

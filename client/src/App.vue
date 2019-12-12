@@ -59,7 +59,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   width: 100%;
-  grid-template-rows: minmax(10%, 15%) 12fr 1fr;
+  grid-template-rows: minmax(200px, 5%) 80% 5%;
   background: rgb(247,238,213);
 background: linear-gradient(180deg, rgba(247,238,213,1) 0%, rgba(255,221,137,1) 48%, rgba(247,238,213,1) 100%);
 }
@@ -116,7 +116,7 @@ footer {
   justify-content: center;
   padding: 1em;
   color:white;
-  grid-row: 3 /4;
+  grid-row: 4 / 5;
   grid-column: 1/4;
   background: rgba(248, 188, 7, 0.9);
 }
