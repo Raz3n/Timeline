@@ -26,9 +26,11 @@
         </draggable>
 
       </section>
-
+      
 
     <deck-component id='discard-pile' :deckArray='discardArray'/>
+
+    <end-game v-if="endGame" :message="endGameString"/>
 
   </section>
 </template>
@@ -37,6 +39,7 @@
 import DeckComponent from './DeckComponent.vue'
 import PlayingCard from './PlayingCard.vue'
 import EvaluationButton from './EvaluationButton.vue'
+import EndGame from './EndGame.vue'
 import draggable from 'vuedraggable'
 import {eventBus} from '../main.js'
 
@@ -61,6 +64,7 @@ export default {
     'deck-component': DeckComponent,
     'playing-card': PlayingCard,
     'evaluation-button': EvaluationButton,
+    'end-game': EndGame,
     draggable
   },
 
@@ -201,8 +205,22 @@ export default {
 
     failSafe() {
       return this.staticBoard.length;
-    }
+    },
 
+    endGame() {
+       if (this.discardArray.length > 0){
+         return true
+       }
+       return false;
+    },
+
+
+    endGameString(){
+      if (this.handArray.length === 0) {
+        return "endWin"
+        }
+        return "endLose"
+      }
     }
   }
 

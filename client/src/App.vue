@@ -25,6 +25,7 @@
 import OnePlayerGame from './components/OnePlayerGame.vue';
 import ViewFullDeck from './components/ViewFullDeck.vue';
 import ViewInstructions from './components/ViewInstructions.vue';
+import EndGame from './components/EndGame.vue';
 
 export default {
   name: 'app',
@@ -47,7 +48,8 @@ export default {
   components: {
     'one-player-game': OnePlayerGame,
     'view-full-deck': ViewFullDeck,
-    'view-instructions': ViewInstructions
+    'view-instructions': ViewInstructions,
+    'end-game': EndGame
   }
 }
 </script>
