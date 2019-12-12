@@ -1,10 +1,20 @@
 <template lang="html">
-  <div class="end-game">
+<section>
 
-    <h3 v-if="discardArray.length > 0">You're History/other time/history related pun</h3>
-    <h3 v-else>Winner Winner Chicken Dinner</h3>
+  <div v-if="message === 'endLose'" >
+  <h3> You're History </h3>
 
   </div>
+
+
+  <div v-if="message === 'endWin'" >
+
+    <h3> Winner Winner Chicken Dinner </h3>
+
+  </div>
+
+</section>
+
 
 </template>
 
@@ -14,25 +24,20 @@ import OnePlayerGame from './OnePlayerGame.vue'
 import EvaluationButton from './EvaluationButton.vue'
 export default {
   name: 'end-game',
-  props: ['discardArray']
+  props: ['discardArray', 'message', 'messageLost']
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </script>
 
+
 <style lang="css" scoped>
+
+h3 {
+
+  font-size: 100px;
+
+
+}
+
+
 </style>

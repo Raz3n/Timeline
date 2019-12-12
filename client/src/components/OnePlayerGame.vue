@@ -26,12 +26,11 @@
         </draggable>
 
       </section>
-
+      
 
     <deck-component id='discard-pile' :deckArray='discardArray'/>
 
-    <end-game class="end-game" v-if="discardArray.length > 0"/>
-
+    <end-game v-if="endGame" :message="endGameString"/>
 
   </section>
 </template>
@@ -206,8 +205,22 @@ export default {
 
     failSafe() {
       return this.staticBoard.length;
-    }
+    },
 
+    endGame() {
+       if (this.discardArray.length > 0){
+         return true
+       }
+       return false;
+    },
+
+
+    endGameString(){
+      if (this.handArray.length === 0) {
+        return "endWin"
+        }
+        return "endLose"
+      }
     }
   }
 
