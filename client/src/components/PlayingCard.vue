@@ -1,5 +1,5 @@
 <template lang="html">
-  <article class="playing-card">
+  <article :class="firstOrLastClass">
     <p class="card-title"> {{card.shortTitle}}</p>
     <img :src="card.image" :alt="card.title"/>
     <p :class="displayStatus">{{card.year}}</p>
@@ -9,12 +9,21 @@
 <script>
 export default {
   name: 'playing-card',
-  props: ['card', 'status'],
+  props: ['card', 'status', 'current'],
   computed: {
     displayStatus() {
       return {
       'hidden': this.status.includes(this.card) !== true,
       'card-year': this.status.includes(this.card) !== false
+      }
+    },
+
+    firstOrLastClass() {
+      return{
+        'first': this.current.indexOf(this.card) === 0,
+        'playing-card': true,
+        'last': this.current.indexOf(this.card) === this.current.length -1,
+
       }
     }
   }
@@ -110,5 +119,10 @@ export default {
     -o-object-fit: cover;
     object-fit: cover;
 }
+
+#board .first{
+  margin-left: 100px;
+}
+#board .last{margin-right: 100px;}
 
 </style>

@@ -8,7 +8,7 @@
         <img src="/left-arrow.svg" alt="left arrow" /> before this event </section>
 
       <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log" >
-        <playing-card v-for="(card, index) in boardArray" :key="index" :card="card" :status="staticBoard" />
+        <playing-card v-for="(card, index) in boardArray" :key="index" :card="card" :status="staticBoard" :current="boardArray"/>
       </draggable>
 
       <section :class="instructionsClass" id="help-right" >
@@ -22,7 +22,7 @@
       <section id="game-container">
 
         <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
-          <playing-card v-for="(card, index) in handArray" :key="index" :card="card" :status="staticBoard"/>
+          <playing-card v-for="(card, index) in handArray" :key="index" :card="card" :status="staticBoard" :current="handArray"/>
         </draggable>
 
       </section>
@@ -325,5 +325,10 @@ export default {
   position: relative;
   top: calc(34% - 10px);}
 
+.first{
+
+}
+
+.last{}
 
 </style>

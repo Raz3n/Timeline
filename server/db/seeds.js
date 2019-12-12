@@ -71,12 +71,5 @@ db.cards.insertMany([
     year: "1981",
     description: "The first space shuttle launch occurred on 12 April 1981. It was named STS-1 and was carried out by NASA's Space Shuttle program. The launch occurred on the 20th anniversary of the first human spaceflight. This was a coincidence rather than a celebration of the anniversary; a technical problem had prevented STS-1 from launching two days earlier, as was planned. IMAX cameras filmed the launch, landing, and mission control during the flight, for a film entitled Hail Columbia!, which debuted in 1982.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Space_Shuttle_Columbia_launching.jpg/520px-Space_Shuttle_Columbia_launching.jpg"
-  },
-  {
-    title: "Invention of MONSTERSSSSS",
-    shortTitle: "Invention of chess",
-    year: "100",
-    description: "Chess is a two-player strategy board game played on a checkered board with 64 squares arranged in an 8×8 grid. The game is played by millions of people worldwide. Chess is believed to be derived from the Indian game chaturanga sometime before the 7th century.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/ChessSet.jpg/500px-ChessSet.jpg"
   }
 ]);
