@@ -63,7 +63,7 @@ export default {
   min-height: 35em;
   /* padding: 0; */
   font-family: 'Ubuntu', sans-serif;
-  line-height: 1.4em;
+  line-height: 1.5em;
 }
 
 h1 {
