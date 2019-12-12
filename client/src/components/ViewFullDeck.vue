@@ -97,7 +97,6 @@ export default {
 
 <style lang="css" scoped>
 
-
 #view-full-deck-wrapper{
   grid-row: 2 / 3;
   grid-column: 1 / 4;
