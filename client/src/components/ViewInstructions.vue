@@ -57,10 +57,10 @@ export default {
   grid-column: 1 / 4;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  padding: 1em;
+  justify-content: space-around;
+  margin: 1em;
   align-items: center;
-  min-height: 35em;
+  min-height: 45em;
   /* padding: 0; */
   font-family: 'Ubuntu', sans-serif;
   line-height: 1.5em;
@@ -94,7 +94,7 @@ h2 {
 
 .instructions-text {
   /* font-size: 2em; */
-
+padding-bottom: 0;
 }
 
 ol, ul {
