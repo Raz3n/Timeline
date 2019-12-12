@@ -9,11 +9,11 @@
 
     <h2>The 1 player variation of the game works as following:</h2>
     <ol class="instructions-text">
-      <li>The computer shuffles the deck from our database.</li><br>
-      <li>One card, the starter card, is placed face-up in the middle of the board.</li><br>
-      <li>A small hand of four cards is dealt, facedown at random to the player.</li><br>
-      <li>The player must choose a card and place it facedown either to the left or right of cards already on the board. Placing it to the left indicates that they believe that the event on the card took place BEFORE the date already displayed on cards to the right of it, and similarly any cards to the right of the card must have taken place AFTER.</li><br>
-      <li>The computer reveals the year of your card, and evaluates if it is in the correct position.</li><br>
+      <li>The computer shuffles the deck from our database.</li>
+      <li>One card, the starter card, is placed face-up in the middle of the board.</li>
+      <li>A small hand of four cards is dealt, facedown at random to the player.</li>
+      <li>The player must choose a card and place it facedown either to the left or right of cards already on the board. Placing it to the left indicates that they believe that the event on the card took place BEFORE the date already displayed on cards to the right of it, and similarly any cards to the right of the card must have taken place AFTER.</li>
+      <li>The computer reveals the year of your card, and evaluates if it is in the correct position.</li>
       <li>If correct, you go again and play continues until you lose or run out of cards to place.</li>
     </ol>
   </section>
@@ -63,6 +63,7 @@ export default {
   min-height: 35em;
   /* padding: 0; */
   font-family: 'Ubuntu', sans-serif;
+  line-height: 1.4em;
 }
 
 h1 {
