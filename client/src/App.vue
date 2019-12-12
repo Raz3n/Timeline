@@ -56,8 +56,10 @@ export default {
 #app{
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 2fr 12fr 1fr;
-  background: url('/table-background.png') no-repeat;
+  width: 100%;
+  grid-template-rows: 9em 12fr 1fr;
+  background: rgb(247,238,213);
+background: linear-gradient(180deg, rgba(247,238,213,1) 0%, rgba(255,221,137,1) 48%, rgba(247,238,213,1) 100%);
 }
 
 nav{

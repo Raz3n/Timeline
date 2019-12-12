@@ -233,26 +233,8 @@ export default {
   visibility: hidden;
 }
 
-/* #board, #hand{
-  display: flex;
-  background: rgba(248, 188, 7, 0.1);
-  border-radius: 1em;
-} */
-/*
-#board {
-  padding-left: 5em;
-  padding-right: 5em;
-  margin-bottom: 1em;
-}
-
-#hand {
-  justify-content: flex-start;
-  width: 80%;
-} */
-
 #board-container{
-  /* position: relative; */
-    max-width: 80%;
+    width: 80%;
     min-height: 100px;
     left: calc(50% - 500px);
     display: -webkit-box;

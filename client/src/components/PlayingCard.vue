@@ -28,6 +28,7 @@ export default {
 }
 
 .playing-card{
+  font-family: 'Open Sans', sans-serif;
   height: 280px;
   min-width: 200px;
   width: 200px;
