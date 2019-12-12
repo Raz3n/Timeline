@@ -243,7 +243,7 @@ export default {
   justify-content: space-evenly; */
 
   display: grid;
-  grid-column-template: 7% 86% 7%;
+  grid-template-columns: 7% 86% 7%;
 
 
   min-height: 35em;
@@ -252,7 +252,7 @@ export default {
 
 #central-channel {
   grid-row: 1 / 1;
-  grid-column: 1/2;
+  grid-column: 2/ span 1;
   display: flex;
   padding: 1em;
   display: flex;

@@ -23,7 +23,7 @@ export default {
       return{
         'discard': this.discardType === true,
         'deal': this.dealType === true,
-        'hidden': this.dealType === true,
+        // 'hidden': this.dealType === true,
         'card-deck': true
       }
 
@@ -44,13 +44,39 @@ export default {
 
 .discard {
   opacity: 0.3;
-
+  position: absolute;
+  right:100px;
+  top: calc(50% - 100px);
 }
 
 .deal {
   visibility: hidden;
   max-width: 10px;
+  grid-column: 1/ span 1;
+  position: absolute;
+  left:100px;
+  top: calc(50% - 100px);
 }
+
+.deal .playing-card {
+  /* position:absolute; */
+  /* position: relative; */
+  /* left:100px; */
+  /* top: 0; */
+  margin-top: -280px;
+
+}
+
+.deal .playing-card .first {
+  /* position:absolute; */
+  /* position: relative; */
+  /* left:100px; */
+  /* top: 0; */
+  z-index: 10;
+
+}
+
+
 
 .hidden{
   visibility:hidden;
