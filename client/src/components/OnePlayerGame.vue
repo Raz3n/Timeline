@@ -234,7 +234,10 @@ export default {
 }
 
 #board-container{
-    width: 80%;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 90%;
+    overflow: auto;
     min-height: 100px;
     left: calc(50% - 500px);
     padding: 10px;
@@ -257,7 +260,7 @@ export default {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-    overflow: auto;
+  width: 100%;
 }
 
 .hand-array{
