@@ -59,7 +59,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   width: 100%;
-  grid-template-rows: 9em 12fr 1fr;
+  grid-template-rows: minmax(10%, 15%) 12fr 1fr;
   background: rgb(247,238,213);
 background: linear-gradient(180deg, rgba(247,238,213,1) 0%, rgba(255,221,137,1) 48%, rgba(247,238,213,1) 100%);
 }
