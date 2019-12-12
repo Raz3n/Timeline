@@ -8,7 +8,7 @@
         <img src="/left-arrow.svg" alt="left arrow" /> before this event </section>
 
       <draggable class="board-array" id="board" :list="boardArray" group="cards" @change="log" >
-        <playing-card v-for="(card, index) in boardArray" :key="index" :card="card" />
+        <playing-card v-for="(card, index) in boardArray" :key="index" :card="card" :status="staticBoard" />
       </draggable>
 
       <section :class="instructionsClass" id="help-right" >
@@ -22,7 +22,7 @@
       <section id="game-container">
 
         <draggable class="hand-array" id="hand" :list="handArray" group="cards" @change="log">
-          <playing-card v-for="(card, index) in handArray" :key="index" :card="card"/>
+          <playing-card v-for="(card, index) in handArray" :key="index" :card="card" :status="staticBoard"/>
         </draggable>
 
       </section>
@@ -102,6 +102,9 @@ export default {
     eventBus.$on('continue-game', () => {
       // deal new card to hand
       this.dealCard(this.drawPileArray, this.handArray, 1);
+      this.boardArray.forEach(card => {
+        card.status = true
+      })
       // set up new snapshots
       this.setStaticHand();
       this.setStaticBoard();
@@ -174,24 +177,6 @@ export default {
       this.staticHand = this.handArray.map(card => card)
     },
 
-    // checkPlayedCard() {
-    //   const playedCard = card
-    //   for (card in boardArray)
-    //   if (boardArray.includes(playedCard))
-    //   discardArray.push(playedCard)
-    // },
-
-    // add: function() {
-    //   this.list.push({ shortTitle: ""});
-    // },
-    // replace: function () {
-    //   this.list = [{ shortTitle: ""}];
-    // },
-    // clone: function (el) {
-    //   return {
-    //     shortTitle: el.shortTitle + " cloned"
-    //   };
-    // },
     log: function (evt) {
       window.console.log(evt);
     }
@@ -235,6 +220,9 @@ export default {
     min-height: 35em;
 }
 
+.active {
+  opacity: 0.8;
+}
 
 .hidden{
   visibility: hidden;
@@ -259,7 +247,7 @@ export default {
 
 #board-container{
   /* position: relative; */
-    width: 100%;
+    max-width: 80%;
     min-height: 100px;
     left: calc(50% - 500px);
     display: -webkit-box;
@@ -269,6 +257,7 @@ export default {
     -ms-flex-pack: center;
     justify-content: center;
     align-items: center;
+    overflow-x: scroll;
 }
 
 

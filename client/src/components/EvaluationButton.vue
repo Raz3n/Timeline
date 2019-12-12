@@ -41,6 +41,7 @@ export default {
             // card is correct
             console.log(i);
             console.log("correct")
+            eventBus.$emit('reveal-year', card)
         }
       }
       console.log('failCounter:', failCounter);
