@@ -11,7 +11,7 @@
   <!-- Want the UL to be flex -->
   <li class="flex-container card-and-information" v-for="(card, index) in currentDeck"  >
 
-    <playing-card :card='card':key="index" />
+    <playing-card :card='card':key="index" :static="[]" />
 
     <section class="information">
       <p>{{ card.title}}</p>
