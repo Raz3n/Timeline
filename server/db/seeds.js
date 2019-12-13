@@ -87,8 +87,8 @@ db.cards.insertMany([
     image: "https://ageofrevolution.org/wp-content/uploads/2018/05/Montgolfier-balloon.jpg"
   },
   {
-    title:"Eugene was born",
-    shortTitle: "Eugene",
+    title:"Eugene was born under a golden star",
+    shortTitle: "Eugene was born",
     year: "1992" ,
     description: "You know who he is",
     image: "https://codeclan.com/wp-content/uploads/2019/10/Eugene.jpg"
